@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Local runtime data (media, recordings, db, backups) — MUST NOT be committed
+data/
+.data/
+.dbg/
+backups/
+*.sql.gz
+*.tar.gz
+
+# Local debug / scratch files
+debug-late-show-start.md
+.freebuff/
+*.mts
+*.log
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+
+# Test / tooling
+coverage/._*

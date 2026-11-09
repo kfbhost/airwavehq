@@ -1,0 +1,26 @@
+{
+  "name": "radiohost-studio",
+  "version": "1.8.6",
+  "private": true,
+  "description": "Self-hosted radio automation platform (RadioHost Studio clone): media library, playlists, clockwheels, scheduling, voice tracking, browser Live Studio, AutoDJ streaming, ad campaigns, analytics.",
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "build": "npm run build -w @radiohost/api && npm run build -w @radiohost/engine && npm run build -w @radiohost/web && npm run build -w @radiohost/widgets",
+    "db:push": "npm run db:push -w @radiohost/api",
+    "dev:api": "npm run dev -w @radiohost/api",
+    "dev:engine": "npm run dev -w @radiohost/engine",
+    "dev:web": "npm run dev -w @radiohost/web"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

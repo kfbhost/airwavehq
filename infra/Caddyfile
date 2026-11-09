@@ -1,0 +1,18 @@
+{$DOMAIN:localhost} {
+	encode gzip
+
+	# Live DJ audio (WebSocket) — engine direct.
+	handle /live-ws* {
+		reverse_proxy engine:9002
+	}
+
+	# The public stream mount — Icecast direct.
+	handle /live* {
+		reverse_proxy icecast:8000
+	}
+
+	# Everything else: dashboard, API, widgets, media.
+	handle {
+		reverse_proxy web:80
+	}
+}

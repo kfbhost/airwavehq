@@ -1,0 +1,118 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-radiohost}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-radiohost}
+      POSTGRES_DB: ${POSTGRES_DB:-radiohost}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-radiohost}"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    restart: unless-stopped
+
+  icecast:
+    image: moul/icecast:latest
+    environment:
+      ICECAST_SOURCE_PASSWORD: ${ICECAST_SOURCE_PASSWORD:-sourcepass}
+      ICECAST_ADMIN_PASSWORD: ${ICECAST_ADMIN_PASSWORD:-adminpass}
+      ICECAST_RELAY_PASSWORD: ${ICECAST_RELAY_PASSWORD:-relaypass}
+      ICECAST_HOSTNAME: ${ICECAST_HOSTNAME:-radio.example.com}
+    restart: unless-stopped
+
+  api:
+    build:
+      context: ..
+      dockerfile: apps/api/Dockerfile
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER:-radiohost}:${POSTGRES_PASSWORD:-radiohost}@postgres:5432/${POSTGRES_DB:-radiohost}
+      DATA_DIR: /data
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in .env}
+      ENGINE_SECRET: ${ENGINE_SECRET:?Set ENGINE_SECRET in .env}
+      PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-http://localhost}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+      ADMIN_NAME: ${ADMIN_NAME:-Station Owner}
+      STATION_NAME: ${STATION_NAME:-My Radio Station}
+      STATION_TIMEZONE: ${STATION_TIMEZONE:-UTC}
+      PUBLIC_STREAM_URL: ${PUBLIC_STREAM_URL:-}
+      PORT: 8080
+      LOG_LEVEL: info
+      MAIL_FROM: ${MAIL_FROM:-}
+      MAIL_TRANSPORT: ${MAIL_TRANSPORT:-}
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_SECURE: ${SMTP_SECURE:-0}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+      MAIL_SENDMAIL_PATH: ${MAIL_SENDMAIL_PATH:-/usr/sbin/sendmail}
+    volumes:
+      - stationdata:/data
+      - ../.env:/app/.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  engine:
+    build:
+      context: ..
+      dockerfile: apps/engine/Dockerfile
+    environment:
+      API_URL: http://api:8080/api
+      ENGINE_SECRET: ${ENGINE_SECRET:?Set ENGINE_SECRET in .env}
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in .env}
+      ICE_HOST: icecast
+      ICE_PORT: 8000
+      ICE_MOUNT: ${ICECAST_MOUNT:-/live}
+      ICE_SOURCE_PASSWORD: ${ICECAST_SOURCE_PASSWORD:-sourcepass}
+      ICE_ADMIN_PASSWORD: ${ICECAST_ADMIN_PASSWORD:-adminpass}
+      ICE_BITRATE: ${ICE_BITRATE:-128}
+      ICE_PUBLIC: ${ICE_PUBLIC:-0}
+      ICE_CODEC: ${ICE_CODEC:-mp3}
+      CROSSFADE_MS: ${CROSSFADE_MS:-2000}
+      AUDIO_PROCESSING: ${AUDIO_PROCESSING:-1}
+      DATA_DIR: /data
+      ENGINE_PORT: 9002
+      LOG_LEVEL: info
+      ENGINE_DIAG: ${ENGINE_DIAG:-0}
+    volumes:
+      - stationdata:/data
+    depends_on:
+      - api
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ..
+      dockerfile: apps/web/Dockerfile
+    depends_on:
+      - api
+      - engine
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMAIN: ${DOMAIN:-localhost}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - web
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  stationdata:
+  caddy_data:
+  caddy_config:

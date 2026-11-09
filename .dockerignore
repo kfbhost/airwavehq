@@ -1,0 +1,10 @@
+node_modules
+**/node_modules
+data
+.data
+apps/*/dist
+apps/*/drizzle
+.git
+*.log
+.env
+coverage
