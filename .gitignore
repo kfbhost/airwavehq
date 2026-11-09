@@ -28,4 +28,7 @@ debug-late-show-start.md
 .DS_Store
 
 # Test / tooling
-coverage/._*
+coverage/
+
+# macOS AppleDouble files
+._*
