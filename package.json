@@ -1,6 +1,6 @@
 {
   "name": "radiohost-studio",
-  "version": "1.8.6",
+  "version": "1.9.0",
   "private": true,
   "description": "Self-hosted radio automation platform (RadioHost Studio clone): media library, playlists, clockwheels, scheduling, voice tracking, browser Live Studio, AutoDJ streaming, ad campaigns, analytics.",
   "type": "module",

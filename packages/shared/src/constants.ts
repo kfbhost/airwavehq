@@ -6,7 +6,7 @@ export const APP_NAME = "RadioHost Studio";
 
 /** Single source of truth for the app version, shown in the sidebar.
  * Bump this (and the package.json versions) on every deployed change. */
-export const APP_VERSION = "1.8.6";
+export const APP_VERSION = "1.9.0";
 
 export const KINDS = [
   "music",
