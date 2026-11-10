@@ -10,15 +10,23 @@ pages for your listeners — everything installed with one script.
 
 ## Screenshots
 
-![RadioHost Studio dashboard: what's on air, automation health, next up](docs/screenshots/dashboard.png)
+![RadioHost Studio dashboard: what's on air, automation health and next up](docs/screenshots/dashboard.png)
 
 | Media Library | Live Studio |
 | --- | --- |
 | ![Media library with cover art, folders, kinds and formats](docs/screenshots/media-library.png) | ![Live Studio: two decks with waveforms, eight jingle carts, mic and master levels](docs/screenshots/live-studio.png) |
 
-| Listener analytics | Public player |
+| Show Builder | Clockwheels |
 | --- | --- |
-| ![Analytics: listeners over time and top tracks](docs/screenshots/analytics.png) | ![Public player with now playing artwork and listen live](docs/screenshots/player.png) |
+| ![Show Builder: a rundown of music tracks, voice links and jingles with Quick build](docs/screenshots/show-builder.png) | ![Clockwheel editor: station ID, music rotation, jingle and ad break slots](docs/screenshots/clockwheels.png) |
+
+| Weekly schedule | Listen Again |
+| --- | --- |
+| ![Weekly schedule grid with breakfast, dance and Sunday shows](docs/screenshots/schedule.png) | ![Listen Again episode cards with show colours and playback](docs/screenshots/listen-again.png) |
+
+| Public player | Analytics |
+| --- | --- |
+| ![Public player with now playing artwork and listen live](docs/screenshots/player.png) | ![Analytics: listeners over time and top tracks](docs/screenshots/analytics.png) |
 
 ## What it does
 
