@@ -28,6 +28,13 @@ pages for your listeners — everything installed with one script.
 | --- | --- |
 | ![Public player with now playing artwork and listen live](docs/screenshots/player.png) | ![Analytics: listeners over time and top tracks](docs/screenshots/analytics.png) |
 
+### Embeddable widgets
+
+Every widget is previewed live next to the one-line snippet you paste into your
+own site.
+
+![Widgets page: standalone player, player widget, compact bar and now-playing ticker with embed code](docs/screenshots/widgets.png)
+
 ## What it does
 
 **Automated playout engine**
