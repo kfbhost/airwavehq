@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { zonedParts, minutesToHHMM, hhmmToMinutes } from "@radiohost/shared";
+import { zonedParts, minutesToHHMM, hhmmToMinutes } from "@airshift/shared";
 import { nextBreakTime, nextHourTime } from "../src/services/scheduler.js";
 
 describe("zonedParts", () => {

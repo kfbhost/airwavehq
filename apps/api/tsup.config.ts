@@ -8,5 +8,5 @@ export default defineConfig({
   outDir: "dist",
   clean: true,
   sourcemap: true,
-  noExternal: ["@radiohost/shared"],
+  noExternal: ["@airshift/shared"],
 });

@@ -2,11 +2,11 @@
 # Create a self-contained release folder: the full application source plus the
 # one-shot installer — nothing you don't need (no node_modules, no data, no .git).
 #
-#   bash infra/make-release.sh              → ../radiohost-release/
+#   bash infra/make-release.sh              → ../airshift-release/
 #   bash infra/make-release.sh /tmp/rel     → custom location
 #
 # Move the folder to a fresh Ubuntu/Debian VPS, then run:
-#   cd radiohost-release && sudo bash infra/install-vps.sh
+#   cd airshift-release && sudo bash infra/install-vps.sh
 #
 # Everything excluded is safe: the Docker build installs dependencies itself
 # (npm ci), and the station's media lives in Docker volumes on the server.
@@ -14,7 +14,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DEST="${1:-$ROOT/../radiohost-release}"
+DEST="${1:-$ROOT/../airshift-release}"
 
 rm -rf "$DEST"
 mkdir -p "$DEST"
@@ -47,7 +47,7 @@ if [ -f "$ROOT/docs/RELEASE_README.md" ]; then
 fi
 
 printf '\nRelease folder ready:\n  %s  (%s)\n' "$DEST" "$(du -sh "$DEST" | awk '{print $1}')"
-printf '\nMove it to a fresh Ubuntu/Debian VPS, then run:\n  cd radiohost-release && sudo bash infra/install-vps.sh\n'
+printf '\nMove it to a fresh Ubuntu/Debian VPS, then run:\n  cd airshift-release && sudo bash infra/install-vps.sh\n'
 
 # Pack the tarball too, so a single command always produces both the folder and
 # the uploadable bundle — nothing to remember after a source change.

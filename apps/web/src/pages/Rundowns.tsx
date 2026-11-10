@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { api, getToken, upload } from "../api";
 import { Badge, Button, Card, Empty, Field, Input, Modal, PageHead, Select, Spinner, useFetch } from "../components/ui";
-import type { RundownItem, ScheduleEntry, Show, Track, VoiceTrack } from "@radiohost/shared";
-import { VOICE_LINK_OVERLAP_IN_MS, VOICE_LINK_OVERLAP_OUT_MS, VOICE_SLOT_ESTIMATE_SEC, SHOW_OVERRUN_TARGET_SEC } from "@radiohost/shared";
+import type { RundownItem, ScheduleEntry, Show, Track, VoiceTrack } from "@airshift/shared";
+import { VOICE_LINK_OVERLAP_IN_MS, VOICE_LINK_OVERLAP_OUT_MS, VOICE_SLOT_ESTIMATE_SEC, SHOW_OVERRUN_TARGET_SEC } from "@airshift/shared";
 
 function fmt(sec: number): string {
   const m = Math.floor(sec / 60);

@@ -5,7 +5,7 @@ import "./css/app.css";
 
 // Apply the saved theme before first paint so there's no flash of the wrong theme.
 try {
-  if (localStorage.getItem("rhs_theme") === "light") {
+  if (localStorage.getItem("airshift_theme") === "light") {
     document.documentElement.dataset.theme = "light";
   }
 } catch {

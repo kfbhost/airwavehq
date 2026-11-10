@@ -2,13 +2,13 @@ services:
   postgres:
     image: postgres:16-alpine
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-radiohost}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-radiohost}
-      POSTGRES_DB: ${POSTGRES_DB:-radiohost}
+      POSTGRES_USER: ${POSTGRES_USER:-airshift}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-airshift}
+      POSTGRES_DB: ${POSTGRES_DB:-airshift}
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-radiohost}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-airshift}"]
       interval: 5s
       timeout: 3s
       retries: 12
@@ -28,7 +28,7 @@ services:
       context: ..
       dockerfile: apps/api/Dockerfile
     environment:
-      DATABASE_URL: postgres://${POSTGRES_USER:-radiohost}:${POSTGRES_PASSWORD:-radiohost}@postgres:5432/${POSTGRES_DB:-radiohost}
+      DATABASE_URL: postgres://${POSTGRES_USER:-airshift}:${POSTGRES_PASSWORD:-airshift}@postgres:5432/${POSTGRES_DB:-airshift}
       DATA_DIR: /data
       JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in .env}
       ENGINE_SECRET: ${ENGINE_SECRET:?Set ENGINE_SECRET in .env}

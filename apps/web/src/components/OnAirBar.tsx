@@ -17,7 +17,7 @@ export function OnAirBar({ userName, userAvatarPath }: { userName: string; userA
   const [playing, setPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [theme, setTheme] = useState<"dark" | "light">(() =>
-    localStorage.getItem("rhs_theme") === "light" ? "light" : "dark",
+    localStorage.getItem("airshift_theme") === "light" ? "light" : "dark",
   );
   const [fullscreen, setFullscreen] = useState(false);
   const fsSupported = fullscreenSupported();
@@ -54,7 +54,7 @@ export function OnAirBar({ userName, userAvatarPath }: { userName: string; userA
     const next = theme === "light" ? "dark" : "light";
     setTheme(next);
     try {
-      localStorage.setItem("rhs_theme", next);
+      localStorage.setItem("airshift_theme", next);
     } catch {
       /* ignore */
     }

@@ -5,7 +5,7 @@ import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { PcmStream } from "../src/decode.js";
 import { Playout, gainEnvelope, transitionGains } from "../src/playout.js";
-import { VOICE_LINK_OVERLAP_IN_MS, VOICE_LINK_OVERLAP_OUT_MS, type EngineItem } from "@radiohost/shared";
+import { VOICE_LINK_OVERLAP_IN_MS, VOICE_LINK_OVERLAP_OUT_MS, type EngineItem } from "@airshift/shared";
 
 describe("gainEnvelope", () => {
   const start = 100_000;
@@ -66,7 +66,7 @@ describe("PcmStream (real ffmpeg)", () => {
   let file: string;
 
   beforeAll(() => {
-    dir = mkdtempSync(join(tmpdir(), "rhs-test-"));
+    dir = mkdtempSync(join(tmpdir(), "airshift-test-"));
     file = join(dir, "tone.mp3");
     execFileSync("ffmpeg", [
       "-v", "error", "-f", "lavfi", "-i", "sine=frequency=440:duration=2",
@@ -174,7 +174,7 @@ describe("Playout (end-to-end with injected sequence)", () => {
   });
 
   it("plays an injected item, reports start/end, and writes audio", async () => {
-    const dir = mkdtempSync(join(tmpdir(), "rhs-play-"));
+    const dir = mkdtempSync(join(tmpdir(), "airshift-play-"));
     const file = join(dir, "tone.mp3");
     execFileSync("ffmpeg", [
       "-v", "error", "-f", "lavfi", "-i", "sine=frequency=330:duration=1.2",
@@ -230,7 +230,7 @@ describe("Playout (end-to-end with injected sequence)", () => {
   });
 
   it("hands over to a live DJ and back without a hard cut or gap", async () => {
-    const dir = mkdtempSync(join(tmpdir(), "rhs-live-"));
+    const dir = mkdtempSync(join(tmpdir(), "airshift-live-"));
     const file = join(dir, "tone.mp3");
     execFileSync("ffmpeg", [
       "-v", "error", "-f", "lavfi", "-i", "sine=frequency=330:duration=3",

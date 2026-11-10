@@ -2,7 +2,7 @@ import { randomBytes, scryptSync, timingSafeEqual, createHash } from "node:crypt
 import { SignJWT, jwtVerify } from "jose";
 import type { FastifyReply, FastifyRequest } from "fastify";
 import { config } from "./config.js";
-import type { Role } from "@radiohost/shared";
+import type { Role } from "@airshift/shared";
 
 /* ---------------- Passwords (scrypt, zero native deps) ---------------- */
 

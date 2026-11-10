@@ -1,6 +1,6 @@
 import type { FastifyInstance, FastifyRequest } from "fastify";
 import { formatEpisodeDuration, loadListenAgainEpisode, loadStationInfo } from "../services/listenAgain.js";
-import type { PublicListenAgainItem } from "@radiohost/shared";
+import type { PublicListenAgainItem } from "@airshift/shared";
 
 // Server-rendered share page for one Listen Again episode.
 //

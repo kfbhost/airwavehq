@@ -1,17 +1,17 @@
 {
-  "name": "radiohost-studio",
-  "version": "1.9.1",
+  "name": "airshift",
+  "version": "2.0.0",
   "private": true,
   "description": "Self-hosted internet radio automation: 24/7 playout, scheduling, browser Live Studio, podcasting, analytics and embeddable widgets.",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kfbhost/radiohost-studio.git"
+    "url": "git+https://github.com/kfbhost/airshift.git"
   },
   "bugs": {
-    "url": "https://github.com/kfbhost/radiohost-studio/issues"
+    "url": "https://github.com/kfbhost/airshift/issues"
   },
-  "homepage": "https://github.com/kfbhost/radiohost-studio#readme",
+  "homepage": "https://github.com/kfbhost/airshift#readme",
   "keywords": [
     "internet-radio",
     "radio-automation",
@@ -29,11 +29,11 @@
   "scripts": {
     "typecheck": "npm run typecheck --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
-    "build": "npm run build -w @radiohost/api && npm run build -w @radiohost/engine && npm run build -w @radiohost/web && npm run build -w @radiohost/widgets",
-    "db:push": "npm run db:push -w @radiohost/api",
-    "dev:api": "npm run dev -w @radiohost/api",
-    "dev:engine": "npm run dev -w @radiohost/engine",
-    "dev:web": "npm run dev -w @radiohost/web"
+    "build": "npm run build -w @airshift/api && npm run build -w @airshift/engine && npm run build -w @airshift/web && npm run build -w @airshift/widgets",
+    "db:push": "npm run db:push -w @airshift/api",
+    "dev:api": "npm run dev -w @airshift/api",
+    "dev:engine": "npm run dev -w @airshift/engine",
+    "dev:web": "npm run dev -w @airshift/web"
   },
   "devDependencies": {
     "typescript": "^5.6.3"

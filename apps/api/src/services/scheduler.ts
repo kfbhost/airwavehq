@@ -25,8 +25,8 @@ import {
   resolveStationRotation,
   rotationPlaylistForDay,
 } from "./stationRotations.js";
-import { DEFAULT_BREAKS, zonedDate, zonedParts, zonedDayStart } from "@radiohost/shared";
-import type { EngineItem, EngineSequence } from "@radiohost/shared";
+import { DEFAULT_BREAKS, zonedDate, zonedParts, zonedDayStart } from "@airshift/shared";
+import type { EngineItem, EngineSequence } from "@airshift/shared";
 
 const BREAK_TARGET_SEC = 120;
 const BREAK_MARGIN_MS = 1500; // within this of a break, insert it now

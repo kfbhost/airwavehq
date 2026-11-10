@@ -5,7 +5,7 @@ export default defineConfig({
   schema: "./src/db/schema.ts",
   out: "./drizzle",
   dbCredentials: {
-    url: process.env.DATABASE_URL ?? "postgres://radiohost:radiohost@localhost:5432/radiohost",
+    url: process.env.DATABASE_URL ?? "postgres://airshift:airshift@localhost:5432/airshift",
   },
   verbose: true,
   strict: true,

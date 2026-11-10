@@ -5,17 +5,17 @@ import { config, getJSON, mount, render } from "./common.js";
  * <script src="https://radio.example.com/widgets/player.js" data-station="https://radio.example.com" data-theme="dark"></script>
  */
 const { base } = config();
-const { root } = mount("rhs-player");
+const { root } = mount("airshift-player");
 
 render(root, `
-  <div class="rhs-widget">
-    <div class="rhs-row">
-      <button class="rhs-btn" id="rhs-toggle">▶</button>
+  <div class="airshift-widget">
+    <div class="airshift-row">
+      <button class="airshift-btn" id="airshift-toggle">▶</button>
       <div style="flex:1;min-width:0">
-        <div class="rhs-title" id="rhs-station">Radio</div>
-        <div class="rhs-meta" id="rhs-now">connecting…</div>
+        <div class="airshift-title" id="airshift-station">Radio</div>
+        <div class="airshift-meta" id="airshift-now">connecting…</div>
       </div>
-      <span class="rhs-muted" id="rhs-listeners"></span>
+      <span class="airshift-muted" id="airshift-listeners"></span>
     </div>
   </div>
 `);
@@ -24,13 +24,13 @@ const audio = new Audio();
 let playing = false;
 let heartbeatId: number | null = null;
 
-const btn = root.getElementById("rhs-toggle")!;
-const stationEl = root.getElementById("rhs-station")!;
-const nowEl = root.getElementById("rhs-now")!;
-const listenersEl = root.getElementById("rhs-listeners")!;
+const btn = root.getElementById("airshift-toggle")!;
+const stationEl = root.getElementById("airshift-station")!;
+const nowEl = root.getElementById("airshift-now")!;
+const listenersEl = root.getElementById("airshift-listeners")!;
 
 function listenerSessionId(): string {
-  const key = "rhs_widget_listener_session";
+  const key = "airshift_widget_listener_session";
   const existing = sessionStorage.getItem(key);
   if (existing) return existing;
   const next = crypto.randomUUID();
@@ -97,7 +97,7 @@ async function poll(): Promise<void> {
       const parts = ["🔴 LIVE"];
       if (info.liveDjName) parts.push(`— ${info.liveDjName}`);
       if (info.showName) parts.push(`· ${info.showName}`);
-      nowEl.innerHTML = `<span class="rhs-live">${parts.join(" ")}</span>`;
+      nowEl.innerHTML = `<span class="airshift-live">${parts.join(" ")}</span>`;
     } else if (info.nowPlaying) {
       nowEl.textContent = `${info.nowPlaying.title} — ${info.nowPlaying.artist}`;
     } else {

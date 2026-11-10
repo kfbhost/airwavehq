@@ -1,5 +1,5 @@
 import { config } from "./config.js";
-import type { ProcessingPreset } from "@radiohost/shared";
+import type { ProcessingPreset } from "@airshift/shared";
 
 /**
  * Broadcast-style dynamics processing applied to the final output before it

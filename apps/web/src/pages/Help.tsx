@@ -98,7 +98,7 @@ export function Help() {
           <Card>
             <H2 id="basics">📻 The basics</H2>
             <P>
-              RadioHost is an <strong>always-on internet radio station</strong> that runs itself. Your music
+              Airshift is an <strong>always-on internet radio station</strong> that runs itself. Your music
               library, playlists and rotation rules feed an automated player that broadcasts 24/7 to listeners
               through a streaming server (Icecast). You manage everything from this dashboard; DJs can jump in
               live from the <strong>Live Studio</strong> and take over the broadcast at any time.

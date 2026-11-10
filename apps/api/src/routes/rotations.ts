@@ -1,6 +1,6 @@
 import type { FastifyInstance } from "fastify";
 import { asc, eq } from "drizzle-orm";
-import { stationRotationPatchSchema, stationRotationSchema } from "@radiohost/shared";
+import { stationRotationPatchSchema, stationRotationSchema } from "@airshift/shared";
 import { authenticate, requireAdmin } from "../auth.js";
 import { db, isoRow, schema } from "../db/client.js";
 import { bumpProgrammingRevision } from "../services/engineState.js";

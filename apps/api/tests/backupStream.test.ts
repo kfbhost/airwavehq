@@ -11,7 +11,7 @@ const run = promisify(execFile);
 
 // `config` reads DATA_DIR at module load, so point it at a scratch directory and
 // import the app modules dynamically (static imports are hoisted above this).
-const dataDir = await mkdtemp(join(tmpdir(), "radiohost-stream-"));
+const dataDir = await mkdtemp(join(tmpdir(), "airshift-stream-"));
 process.env.DATA_DIR = dataDir;
 process.env.JWT_SECRET = "test-secret";
 

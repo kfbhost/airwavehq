@@ -2,7 +2,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { api, setToken } from "../api";
 import { Button, Field, Input } from "../components/ui";
-import type { User } from "@radiohost/shared";
+import type { User } from "@airshift/shared";
 
 interface InviteInfo {
   valid: boolean;
@@ -58,7 +58,7 @@ export function AcceptInvite() {
         <div style={{ textAlign: "center", marginBottom: 18 }}>
           <div className="logo" style={{ width: 44, height: 44, borderRadius: 12, fontSize: 22, margin: "0 auto 10px", background: "linear-gradient(135deg, var(--accent), var(--accent2))", display: "grid", placeItems: "center" }}>📻</div>
           <h2 style={{ margin: 0 }}>You're invited</h2>
-          <div className="muted small">{info?.stationName ? `${info.stationName} · RadioHost Studio` : "RadioHost Studio"}</div>
+          <div className="muted small">{info?.stationName ? `${info.stationName} · Airshift` : "Airshift"}</div>
         </div>
 
         {!info ? (

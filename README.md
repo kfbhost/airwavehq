@@ -1,4 +1,4 @@
-# RadioHost Studio
+# Airshift
 
 ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Node.js 20+](https://img.shields.io/badge/node-%E2%89%A520-339933)
@@ -13,7 +13,7 @@ pages for your listeners — everything installed with one script.
 
 ## Screenshots
 
-![RadioHost Studio dashboard: what's on air, automation health and next up](docs/screenshots/dashboard.png)
+![Airshift dashboard: what's on air, automation health and next up](docs/screenshots/dashboard.png)
 
 | Media Library | Live Studio |
 | --- | --- |
@@ -96,8 +96,8 @@ it isn't there already.
 1. Get the code onto the server:
 
    ```bash
-   git clone https://github.com/kfbhost/radiohost-studio.git
-   cd radiohost-studio
+   git clone https://github.com/kfbhost/airshift.git
+   cd airshift
    ```
 
    (No git on the box? `rsync` the folder over instead — see

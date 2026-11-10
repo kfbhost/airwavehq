@@ -1,4 +1,4 @@
-# RadioHost Studio
+# Airshift
 
 A complete, self-hosted internet radio station that runs on your own Linux VPS —
 no SaaS fees, no per-listener pricing. Your music, your listeners, your data,
@@ -59,7 +59,7 @@ pages for your listeners — everything installed with one script.
 
 ## Install on a fresh Linux VPS (one script)
 
-1. Put this folder on a **fresh Ubuntu or Debian VPS** (e.g. `/opt/radiohost`).
+1. Put this folder on a **fresh Ubuntu or Debian VPS** (e.g. `/opt/airshift`).
 2. Point your domain's **A record** at the VPS IP and open ports **80** and **443**.
 3. Run:
 

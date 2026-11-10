@@ -10,7 +10,7 @@ COPY apps/widgets/package.json apps/widgets/package.json
 RUN npm ci
 RUN npm install "@rollup/rollup-linux-x64-musl@$(node -p "require('./node_modules/rollup/package.json').version")" --no-save
 COPY . .
-RUN npm run build -w @radiohost/engine
+RUN npm run build -w @airshift/engine
 
 FROM node:22-alpine
 RUN apk add --no-cache ffmpeg

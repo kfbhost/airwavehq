@@ -1,12 +1,12 @@
 /**
- * Shared constants for RadioHost Studio.
+ * Shared constants for Airshift.
  */
 
-export const APP_NAME = "RadioHost Studio";
+export const APP_NAME = "Airshift";
 
 /** Single source of truth for the app version, shown in the sidebar.
  * Bump this (and the package.json versions) on every deployed change. */
-export const APP_VERSION = "1.9.1";
+export const APP_VERSION = "2.0.0";
 
 export const KINDS = [
   "music",

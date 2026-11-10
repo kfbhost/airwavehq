@@ -5,20 +5,20 @@ import { absolute, config, duration, esc, getJSON, mount, render } from "./commo
  * <script src="https://radio.example.com/widgets/listenagain.js" data-station="https://radio.example.com" data-theme="dark" data-limit="4"></script>
  */
 const { base, script } = config();
-const { root } = mount("rhs-episodes");
+const { root } = mount("airshift-episodes");
 const limit = Math.min(Math.max(Number(script?.getAttribute("data-limit") ?? "4") || 4, 1), 10);
 
 render(root, `
-  <div class="rhs-widget">
-    <div class="rhs-title">Listen again</div>
-    <div class="rhs-meta" style="margin:4px 0 8px">Latest shows you can catch up on</div>
-    <div class="rhs-list" id="rhs-list"><div class="rhs-muted">loading…</div></div>
-    <audio id="rhs-audio" preload="none"></audio>
+  <div class="airshift-widget">
+    <div class="airshift-title">Listen again</div>
+    <div class="airshift-meta" style="margin:4px 0 8px">Latest shows you can catch up on</div>
+    <div class="airshift-list" id="airshift-list"><div class="airshift-muted">loading…</div></div>
+    <audio id="airshift-audio" preload="none"></audio>
   </div>
 `);
 
-const listEl = root.getElementById("rhs-list")!;
-const audio = root.getElementById("rhs-audio") as HTMLAudioElement;
+const listEl = root.getElementById("airshift-list")!;
+const audio = root.getElementById("airshift-audio") as HTMLAudioElement;
 
 interface Episode {
   id: string;
@@ -36,15 +36,15 @@ let currentId: string | null = null;
 function renderList(episodes: Episode[]): void {
   listEl.innerHTML = episodes
     .map(
-      (ep) => `<div class="rhs-item" data-id="${esc(ep.id)}">
-        <span class="rhs-item-art">${ep.artworkUrl ? `<img alt="" src="${esc(absolute(base, ep.artworkUrl))}">` : "🎙️"}</span>
-        <div class="rhs-item-copy">
-          <div class="rhs-item-name">${esc(ep.title)}</div>
-          <div class="rhs-muted rhs-truncate">${esc(ep.showName ?? ep.djName ?? "")}${
+      (ep) => `<div class="airshift-item" data-id="${esc(ep.id)}">
+        <span class="airshift-item-art">${ep.artworkUrl ? `<img alt="" src="${esc(absolute(base, ep.artworkUrl))}">` : "🎙️"}</span>
+        <div class="airshift-item-copy">
+          <div class="airshift-item-name">${esc(ep.title)}</div>
+          <div class="airshift-muted airshift-truncate">${esc(ep.showName ?? ep.djName ?? "")}${
             duration(ep.durationSeconds) ? ` · ${duration(ep.durationSeconds)}` : ""
           }</div>
         </div>
-        <button class="rhs-mini-btn" data-play="${esc(ep.id)}">▶</button>
+        <button class="airshift-mini-btn" data-play="${esc(ep.id)}">▶</button>
       </div>`,
     )
     .join("");
@@ -84,13 +84,13 @@ async function poll(): Promise<void> {
     const res = await getJSON<{ episodes: Episode[] }>(`${base}/api/public/listen-again`);
     const episodes = res.episodes.slice(0, limit);
     if (episodes.length === 0) {
-      listEl.innerHTML = `<div class="rhs-muted">No recorded shows published yet.</div>`;
+      listEl.innerHTML = `<div class="airshift-muted">No recorded shows published yet.</div>`;
       return;
     }
     renderList(episodes);
     markPlaying();
   } catch {
-    listEl.innerHTML = `<div class="rhs-muted">station unreachable</div>`;
+    listEl.innerHTML = `<div class="airshift-muted">station unreachable</div>`;
   }
 }
 

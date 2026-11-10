@@ -1,5 +1,5 @@
 import { config } from "./config.js";
-import type { EngineItem, EnginePlayEvent, EngineSequence, EngineStatus } from "@radiohost/shared";
+import type { EngineItem, EnginePlayEvent, EngineSequence, EngineStatus } from "@airshift/shared";
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${config.apiUrl}${path}`, {

@@ -1,5 +1,5 @@
 {
-  "name": "@radiohost/engine",
+  "name": "@airshift/engine",
   "version": "1.1.0",
   "private": true,
   "type": "module",
@@ -11,7 +11,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@radiohost/shared": "*",
+    "@airshift/shared": "*",
     "jose": "^5.9.6",
     "ws": "^8.18.0"
   },

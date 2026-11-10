@@ -4,7 +4,7 @@ import { db, schema, isoRow } from "../db/client.js";
 import { authenticate, requireAdmin } from "../auth.js";
 import { feasibility, planCampaign } from "../services/planner.js";
 import { proposalPdf } from "../services/report.js";
-import { BREAK_NAMES, campaignSchema, campaignPatchSchema, zonedDate } from "@radiohost/shared";
+import { BREAK_NAMES, campaignSchema, campaignPatchSchema, zonedDate } from "@airshift/shared";
 
 const RULE_LABELS: Record<string, string> = BREAK_NAMES;
 

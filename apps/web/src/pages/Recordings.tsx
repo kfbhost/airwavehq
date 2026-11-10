@@ -2,7 +2,7 @@ import { useState } from "react";
 import { api, getToken } from "../api";
 import { Badge, Button, Card, Empty, Field, Input, Modal, PageHead, Select, Spinner, UserAvatar, useFetch } from "../components/ui";
 import { AudioPlayer } from "../components/AudioPlayer";
-import type { RecordingRow, User } from "@radiohost/shared";
+import type { RecordingRow, User } from "@airshift/shared";
 
 function fmtClock(totalSeconds: number): string {
   const total = Math.max(0, Math.round(totalSeconds));

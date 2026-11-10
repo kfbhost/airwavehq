@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { PROCESSING_PRESETS, broadcastFilterArgsFor } from "../src/processing.js";
-import type { ProcessingPreset } from "@radiohost/shared";
+import type { ProcessingPreset } from "@airshift/shared";
 
 describe("broadcast processing", () => {
   const presets: ProcessingPreset[] = ["gentle", "radio", "punch"];

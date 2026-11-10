@@ -1,4 +1,4 @@
-import type { EngineStatus } from "@radiohost/shared";
+import type { EngineStatus } from "@airshift/shared";
 
 /**
  * Latest status reported by the engine + a hub of dashboard WebSocket

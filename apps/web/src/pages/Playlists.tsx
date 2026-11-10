@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { api } from "../api";
 import { Badge, Button, Card, Empty, Field, Input, Modal, PageHead, Select, Spinner, useFetch } from "../components/ui";
-import type { Playlist, PlaylistItem, Track } from "@radiohost/shared";
+import type { Playlist, PlaylistItem, Track } from "@airshift/shared";
 
 interface ItemRow extends PlaylistItem {
   track: Track;

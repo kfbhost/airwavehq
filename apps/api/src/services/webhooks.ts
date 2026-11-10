@@ -1,7 +1,7 @@
 import { createHmac } from "node:crypto";
 import { and, asc, eq, inArray, lte, ne, sql } from "drizzle-orm";
 import { db, schema } from "../db/client.js";
-import type { WebhookEvent } from "@radiohost/shared";
+import type { WebhookEvent } from "@airshift/shared";
 
 /**
  * Queues a webhook delivery for every active webhook subscribed to `event`.
@@ -61,9 +61,9 @@ async function workerTick(): Promise<void> {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-RadioHost-Event": d.event,
-          "X-RadioHost-Signature": `sha256=${signature}`,
-          "User-Agent": "RadioHost-Studio/1.0",
+          "X-Airshift-Event": d.event,
+          "X-Airshift-Signature": `sha256=${signature}`,
+          "User-Agent": "Airshift-Studio/1.0",
         },
         body,
         signal: AbortSignal.timeout(10_000),

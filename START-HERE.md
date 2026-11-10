@@ -1,4 +1,4 @@
-# RadioHost Studio — Start Here
+# Airshift — Start Here
 
 A complete internet radio station: automated playout, scheduled shows, a browser
 Live Studio for DJs, show recording with a public Listen Again page, ad campaigns,
@@ -6,7 +6,7 @@ listener requests, analytics, widgets, and one-click backups.
 
 ## Fresh VPS Install (one script)
 
-1. Put this folder on a **fresh Ubuntu or Debian VPS**, e.g. `/opt/radiohost-studio`
+1. Put this folder on a **fresh Ubuntu or Debian VPS**, e.g. `/opt/airshift`
    (clone from git or upload with `rsync` — see `docs/VPS_SETUP.md`).
 2. Point your domain's A record at the VPS IP and open ports `80` and `443`.
 3. Run:

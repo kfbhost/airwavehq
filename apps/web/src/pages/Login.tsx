@@ -2,7 +2,7 @@ import { useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { api, setToken } from "../api";
 import { Button, Field, Input } from "../components/ui";
-import type { User } from "@radiohost/shared";
+import type { User } from "@airshift/shared";
 
 function useAuth(onDone: (u: User) => void) {
   const nav = useNavigate();
@@ -41,7 +41,7 @@ export function Login({ onDone }: { onDone: (u: User) => void }) {
       <div className="card login-card">
         <div style={{ textAlign: "center", marginBottom: 18 }}>
           <div className="logo" style={{ width: 44, height: 44, borderRadius: 12, fontSize: 22, margin: "0 auto 10px", background: "linear-gradient(135deg, var(--accent), var(--accent2))", display: "grid", placeItems: "center" }}>📻</div>
-          <h2 style={{ margin: 0 }}>RadioHost Studio</h2>
+          <h2 style={{ margin: 0 }}>Airshift</h2>
           <div className="muted small">Sign in to your station</div>
         </div>
         <form onSubmit={go}>

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Pack a minimal release tarball for a fresh VPS install.
 #
-#   bash infra/pack-release.sh                → ../radiohost-release.tar.gz
+#   bash infra/pack-release.sh                → ../airshift-release.tar.gz
 #   bash infra/pack-release.sh /tmp/r.tar.gz  → custom location
 #
 # What's excluded (and why it's safe):
@@ -16,7 +16,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-OUT="${1:-$ROOT/../radiohost-release.tar.gz}"
+OUT="${1:-$ROOT/../airshift-release.tar.gz}"
 
 cd "$ROOT"
 

@@ -5,21 +5,21 @@ import { clock, config, esc, getJSON, mount, render, nowMinutes, todayIndex } fr
  * <script src="https://radio.example.com/widgets/schedule.js" data-station="https://radio.example.com" data-theme="dark"></script>
  */
 const { base } = config();
-const { root } = mount("rhs-schedule");
+const { root } = mount("airshift-schedule");
 
 render(root, `
-  <div class="rhs-widget">
-    <div class="rhs-row" style="justify-content:space-between">
-      <div class="rhs-title" id="rhs-head">On air today</div>
-      <span class="rhs-badge rhs-badge-live" id="rhs-live" style="display:none">🔴 LIVE</span>
+  <div class="airshift-widget">
+    <div class="airshift-row" style="justify-content:space-between">
+      <div class="airshift-title" id="airshift-head">On air today</div>
+      <span class="airshift-badge airshift-badge-live" id="airshift-live" style="display:none">🔴 LIVE</span>
     </div>
-    <div class="rhs-list" id="rhs-list"><div class="rhs-muted">loading…</div></div>
+    <div class="airshift-list" id="airshift-list"><div class="airshift-muted">loading…</div></div>
   </div>
 `);
 
-const headEl = root.getElementById("rhs-head")!;
-const listEl = root.getElementById("rhs-list")!;
-const liveEl = root.getElementById("rhs-live")!;
+const headEl = root.getElementById("airshift-head")!;
+const listEl = root.getElementById("airshift-list")!;
+const liveEl = root.getElementById("airshift-live")!;
 
 interface ScheduleItem {
   dayOfWeek: number;
@@ -49,7 +49,7 @@ async function poll(): Promise<void> {
 
     if (todayItems.length === 0) {
       headEl.textContent = "On air today";
-      listEl.innerHTML = `<div class="rhs-muted">Nothing scheduled yet today.</div>`;
+      listEl.innerHTML = `<div class="airshift-muted">Nothing scheduled yet today.</div>`;
       return;
     }
 
@@ -60,20 +60,20 @@ async function poll(): Promise<void> {
       .map((item) => {
         const onAir = item === current;
         const color = item.show.color || "#64748b";
-        return `<div class="rhs-item${onAir ? " rhs-item-on" : ""}">
+        return `<div class="airshift-item${onAir ? " airshift-item-on" : ""}">
           <span style="width:8px;height:8px;border-radius:50%;background:${esc(color)};flex:0 0 8px"></span>
-          <div class="rhs-item-copy">
-            <div class="rhs-item-name">${esc(item.show.name)}</div>
-            <div class="rhs-muted rhs-truncate">${esc(item.show.presenters ?? "")}</div>
+          <div class="airshift-item-copy">
+            <div class="airshift-item-name">${esc(item.show.name)}</div>
+            <div class="airshift-muted airshift-truncate">${esc(item.show.presenters ?? "")}</div>
           </div>
-          <span class="rhs-time">${clock(item.startMinutes)}</span>
+          <span class="airshift-time">${clock(item.startMinutes)}</span>
         </div>`;
       })
       .join("");
 
     headEl.textContent = live || current ? "On air now" : next ? `Next at ${clock(next.startMinutes)}` : "That's all for today";
   } catch {
-    listEl.innerHTML = `<div class="rhs-muted">station unreachable</div>`;
+    listEl.innerHTML = `<div class="airshift-muted">station unreachable</div>`;
   }
 }
 

@@ -5,27 +5,27 @@ import { config, getJSON, mount, render } from "./common.js";
  * <script src="https://radio.example.com/widgets/requests.js" data-station="https://radio.example.com"></script>
  */
 const { base } = config();
-const { root } = mount("rhs-requests");
+const { root } = mount("airshift-requests");
 
 render(root, `
-  <div class="rhs-widget">
-    <div class="rhs-title">Request a song</div>
-    <div class="rhs-meta" style="margin:4px 0 10px">We'll play it on air soon.</div>
-    <input id="rhs-query" placeholder="Song or artist…" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px 10px;font-size:14px;margin-bottom:8px">
-    <div id="rhs-suggest" style="display:flex;flex-direction:column;gap:4px;margin-bottom:8px"></div>
-    <input id="rhs-name" placeholder="Your name (optional)" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px 10px;font-size:14px;margin-bottom:8px">
-    <textarea id="rhs-msg" placeholder="Message (optional)" rows="2" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px 10px;font-size:14px;margin-bottom:10px;resize:vertical"></textarea>
-    <button id="rhs-submit" class="rhs-btn" style="width:100%">Send request</button>
-    <div id="rhs-status" class="rhs-meta" style="margin-top:8px"></div>
+  <div class="airshift-widget">
+    <div class="airshift-title">Request a song</div>
+    <div class="airshift-meta" style="margin:4px 0 10px">We'll play it on air soon.</div>
+    <input id="airshift-query" placeholder="Song or artist…" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px 10px;font-size:14px;margin-bottom:8px">
+    <div id="airshift-suggest" style="display:flex;flex-direction:column;gap:4px;margin-bottom:8px"></div>
+    <input id="airshift-name" placeholder="Your name (optional)" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px 10px;font-size:14px;margin-bottom:8px">
+    <textarea id="airshift-msg" placeholder="Message (optional)" rows="2" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px 10px;font-size:14px;margin-bottom:10px;resize:vertical"></textarea>
+    <button id="airshift-submit" class="airshift-btn" style="width:100%">Send request</button>
+    <div id="airshift-status" class="airshift-meta" style="margin-top:8px"></div>
   </div>
 `);
 
-const queryEl = root.getElementById("rhs-query") as HTMLInputElement;
-const nameEl = root.getElementById("rhs-name") as HTMLInputElement;
-const msgEl = root.getElementById("rhs-msg") as HTMLTextAreaElement;
-const suggestEl = root.getElementById("rhs-suggest")!;
-const submitEl = root.getElementById("rhs-submit") as HTMLButtonElement;
-const statusEl = root.getElementById("rhs-status")!;
+const queryEl = root.getElementById("airshift-query") as HTMLInputElement;
+const nameEl = root.getElementById("airshift-name") as HTMLInputElement;
+const msgEl = root.getElementById("airshift-msg") as HTMLTextAreaElement;
+const suggestEl = root.getElementById("airshift-suggest")!;
+const submitEl = root.getElementById("airshift-submit") as HTMLButtonElement;
+const statusEl = root.getElementById("airshift-status")!;
 
 let selectedId: string | null = null;
 let searchTimer: ReturnType<typeof setTimeout>;

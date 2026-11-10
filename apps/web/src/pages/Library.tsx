@@ -2,8 +2,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { api, upload } from "../api";
 import { mediaUrl } from "../media";
 import { Badge, Button, Card, Empty, Field, Input, Modal, PageHead, Select, Spinner, useFetch } from "../components/ui";
-import type { Track, TrackKind } from "@radiohost/shared";
-import { KIND_LABELS } from "@radiohost/shared";
+import type { Track, TrackKind } from "@airshift/shared";
+import { KIND_LABELS } from "@airshift/shared";
 
 const KINDS: Array<TrackKind | "all"> = ["all", "music", "jingle", "sweeper", "station_id", "ad", "voice"];
 const MAX_CONCURRENT_UPLOADS = 5;

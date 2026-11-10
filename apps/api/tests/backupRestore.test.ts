@@ -11,7 +11,7 @@ const run = promisify(execFile);
 
 // `config` reads DATA_DIR at module load, so point it at a scratch directory and
 // import the app modules dynamically (static imports are hoisted above this).
-const dataDir = await mkdtemp(join(tmpdir(), "radiohost-restore-"));
+const dataDir = await mkdtemp(join(tmpdir(), "airshift-restore-"));
 process.env.DATA_DIR = dataDir;
 process.env.JWT_SECRET = "test-secret";
 
@@ -77,7 +77,7 @@ function authed(): Record<string, string> {
 
 /** Builds an archive exactly like the backup endpoint does: files, optional index. */
 async function buildArchive(name: string, files: Record<string, string>, manifest?: unknown): Promise<void> {
-  const stage = await mkdtemp(join(tmpdir(), "radiohost-archive-"));
+  const stage = await mkdtemp(join(tmpdir(), "airshift-archive-"));
   for (const [rel, content] of Object.entries(files)) {
     const p = join(stage, rel);
     await mkdir(dirname(p), { recursive: true });

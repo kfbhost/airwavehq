@@ -4,7 +4,7 @@ function env(name: string, fallback: string): string {
 
 export const config = {
   port: Number(env("PORT", "8080")),
-  databaseUrl: env("DATABASE_URL", "postgres://radiohost:radiohost@localhost:5432/radiohost"),
+  databaseUrl: env("DATABASE_URL", "postgres://airshift:airshift@localhost:5432/airshift"),
   dataDir: env("DATA_DIR", "../../data"),
   jwtSecret: env("JWT_SECRET", "dev-secret-change-me"),
   engineSecret: env("ENGINE_SECRET", "dev-engine-secret-change-me"),

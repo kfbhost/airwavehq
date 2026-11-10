@@ -1,4 +1,4 @@
-# RadioHost VPS Setup Guide
+# Airshift VPS Setup Guide
 
 A **fresh Ubuntu or Debian VPS** can be running the whole station with **one script**.
 The installer installs Docker, generates all secrets, builds the stack, waits until
@@ -18,8 +18,8 @@ it's healthy, and prints your login details â€” no manual `.env` editing re
 
 ```bash
 mkdir -p /opt && cd /opt
-git clone https://github.com/kfbhost/radiohost-studio.git radiohost-studio
-cd /opt/radiohost-studio
+git clone https://github.com/kfbhost/airshift.git airshift
+cd /opt/airshift
 ```
 
 ### Option B: upload from your computer
@@ -28,7 +28,7 @@ cd /opt/radiohost-studio
 rsync -az --delete \
   --exclude node_modules --exclude .git --exclude .DS_Store \
   --exclude .env --exclude dist --exclude build --exclude .turbo \
-  /path/to/radiohost-studio/ root@YOUR_SERVER_IP:/opt/radiohost-studio/
+  /path/to/airshift/ root@YOUR_SERVER_IP:/opt/airshift/
 ```
 
 ## 2. Run the Installer (that's it)
@@ -94,7 +94,7 @@ sudo bash infra/install-vps.sh
 Or use compose directly:
 
 ```bash
-cd /opt/radiohost-studio
+cd /opt/airshift
 docker compose -f infra/docker-compose.yml --env-file .env up -d --build
 docker compose -f infra/docker-compose.yml --env-file .env ps
 docker compose -f infra/docker-compose.yml --env-file .env logs -f
@@ -106,7 +106,7 @@ docker compose -f infra/docker-compose.yml --env-file .env logs -f
   library + recordings + config), with download and restore.
 - `infra/backup.sh` is the host-side script for scheduled cron backups; it bundles
   the code too and keeps the last 14 days. Example cron:
-  `0 3 * * * cd /opt/radiohost-studio && BACKUP_DIR=/var/backups/radiohost ./infra/backup.sh`
+  `0 3 * * * cd /opt/airshift && BACKUP_DIR=/var/backups/airshift ./infra/backup.sh`
 
 ## Troubleshooting
 

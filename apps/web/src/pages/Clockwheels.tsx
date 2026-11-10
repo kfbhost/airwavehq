@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { api } from "../api";
 import { Badge, Button, Card, Empty, Field, Input, Modal, PageHead, Select, Spinner, useFetch } from "../components/ui";
-import type { ClockSlot, Clockwheel, Playlist, Track } from "@radiohost/shared";
+import type { ClockSlot, Clockwheel, Playlist, Track } from "@airshift/shared";
 
 export function Clockwheels() {
   const { data, loading, reload } = useFetch(() => api<{ clockwheels: Clockwheel[] }>("/clockwheels"));

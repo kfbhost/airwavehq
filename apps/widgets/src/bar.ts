@@ -5,17 +5,17 @@ import { config, getJSON, mount, render } from "./common.js";
  * <script src="https://radio.example.com/widgets/bar.js" data-station="https://radio.example.com" data-theme="dark"></script>
  */
 const { base } = config();
-const { root } = mount("rhs-bar");
+const { root } = mount("airshift-bar");
 
 render(root, `
-  <div class="rhs-bar">
-    <button class="rhs-btn" id="rhs-toggle" style="padding:6px 12px">▶</button>
-    <span class="rhs-live" style="font-size:12px">●</span>
+  <div class="airshift-bar">
+    <button class="airshift-btn" id="airshift-toggle" style="padding:6px 12px">▶</button>
+    <span class="airshift-live" style="font-size:12px">●</span>
     <div style="flex:1;min-width:0">
-      <div class="rhs-truncate" id="rhs-text" style="font-weight:600">connecting…</div>
-      <div class="rhs-truncate" id="rhs-sub" style="font-size:11px;color:var(--muted)"></div>
+      <div class="airshift-truncate" id="airshift-text" style="font-weight:600">connecting…</div>
+      <div class="airshift-truncate" id="airshift-sub" style="font-size:11px;color:var(--muted)"></div>
     </div>
-    <span class="rhs-muted" id="rhs-listeners"></span>
+    <span class="airshift-muted" id="airshift-listeners"></span>
   </div>
 `);
 
@@ -23,14 +23,14 @@ const audio = new Audio();
 let playing = false;
 let heartbeatId: number | null = null;
 
-const btn = root.getElementById("rhs-toggle") as HTMLButtonElement;
-const textEl = root.getElementById("rhs-text")!;
-const subEl = root.getElementById("rhs-sub")!;
-const liveEl = root.querySelector(".rhs-live") as HTMLElement;
-const listenersEl = root.getElementById("rhs-listeners")!;
+const btn = root.getElementById("airshift-toggle") as HTMLButtonElement;
+const textEl = root.getElementById("airshift-text")!;
+const subEl = root.getElementById("airshift-sub")!;
+const liveEl = root.querySelector(".airshift-live") as HTMLElement;
+const listenersEl = root.getElementById("airshift-listeners")!;
 
 function listenerSessionId(): string {
-  const key = "rhs_widget_listener_session";
+  const key = "airshift_widget_listener_session";
   const existing = safeStorage(key);
   if (existing) return existing;
   const next = typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
