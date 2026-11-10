@@ -2,7 +2,25 @@
   "name": "radiohost-studio",
   "version": "1.9.1",
   "private": true,
-  "description": "Self-hosted radio automation platform (RadioHost Studio clone): media library, playlists, clockwheels, scheduling, voice tracking, browser Live Studio, AutoDJ streaming, ad campaigns, analytics.",
+  "description": "Self-hosted internet radio automation: 24/7 playout, scheduling, browser Live Studio, podcasting, analytics and embeddable widgets.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kfbhost/radiohost-studio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kfbhost/radiohost-studio/issues"
+  },
+  "homepage": "https://github.com/kfbhost/radiohost-studio#readme",
+  "keywords": [
+    "internet-radio",
+    "radio-automation",
+    "playout",
+    "icecast",
+    "live-studio",
+    "podcast",
+    "self-hosted"
+  ],
   "type": "module",
   "workspaces": [
     "apps/*",

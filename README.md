@@ -1,5 +1,8 @@
 # RadioHost Studio
 
+![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)
+![Node.js 20+](https://img.shields.io/badge/node-%E2%89%A520-339933)
+
 A complete, self-hosted internet radio station that runs on your own Linux VPS —
 no SaaS fees, no per-listener pricing. Your music, your listeners, your data,
 all yours.
@@ -86,17 +89,29 @@ own site.
 
 ## Install on a fresh Linux VPS (one script)
 
-1. Put this folder on a **fresh Ubuntu or Debian VPS** (e.g. `/opt/radiohost`).
-2. Point your domain's **A record** at the VPS IP and open ports **80** and **443**.
-3. Run:
+**Requirements:** Ubuntu 22.04+ or Debian 12+, a domain whose **A record** points
+at the server, and ports **80** and **443** open. Docker is installed for you if
+it isn't there already.
+
+1. Get the code onto the server:
+
+   ```bash
+   git clone https://github.com/kfbhost/radiohost-studio.git
+   cd radiohost-studio
+   ```
+
+   (No git on the box? `rsync` the folder over instead — see
+   `docs/VPS_SETUP.md`.)
+
+2. Run the installer:
 
    ```bash
    sudo bash infra/install-vps.sh
    ```
 
-The installer installs Docker if needed, asks for your domain and admin email,
-generates every secret for you, builds and starts the whole station, waits until
-the API is healthy, and prints your login details. That's all there is to it.
+The installer asks for your domain and admin email, generates every secret,
+builds and starts the whole station, waits until the API is healthy, and prints
+your login details. That's all there is to it.
 
 Unattended / scripting:
 
@@ -120,6 +135,34 @@ settings.
 3. **Playlists** → create a song playlist and add tracks.
 4. **Settings** → set your default playlist so AutoDJ can play.
 5. The station is broadcasting on the air.
+
+The dashboard lives at `/` and the **Live Studio** at `/studio`. Listeners get
+the Icecast stream at `/live`, which is why the studio has its own route.
+
+## Local development
+
+Requires Node 20+, `ffmpeg`/`ffprobe` on your `PATH`, and PostgreSQL.
+
+```bash
+npm install
+npm run db:push     # create the database schema
+npm run dev:api     # API on :8080
+npm run dev:engine  # playout engine on :9002 (separate terminal)
+npm run dev:web     # dashboard on :5173
+```
+
+Open http://localhost:5173 — on a fresh database the first-run screen creates
+your admin account. Configuration is read from `process.env` (nothing is loaded
+from `.env` automatically); `.env.example` lists every variable, and the Docker
+path supplies them through Compose.
+
+Checks:
+
+```bash
+npm run typecheck   # all packages
+npm test            # unit tests (vitest)
+npm run build       # production builds for api, engine, web and widgets
+```
 
 ### Backups & moving to a new server
 
@@ -149,3 +192,7 @@ packages/
 
 - `START-HERE.md` — quick start summary
 - `docs/VPS_SETUP.md` — full install guide, flags, updates, backups, troubleshooting
+
+## License
+
+MIT — see [LICENSE](LICENSE).
