@@ -3,6 +3,7 @@ import cors from "@fastify/cors";
 import multipart from "@fastify/multipart";
 import fastifyStatic from "@fastify/static";
 import websocket from "@fastify/websocket";
+import { ZodError } from "zod";
 import { existsSync } from "node:fs";
 import { mkdir } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
@@ -37,6 +38,32 @@ export async function buildApp() {
     },
     bodyLimit: 5 * 1024 * 1024,
     trustProxy: true,
+  });
+
+  // Error handling must be installed BEFORE any route plugin is registered.
+  // Fastify encapsulates handlers per context: one added later is not inherited
+  // by route contexts that already exist, so a thrown zod error fell through to
+  // Fastify's default handler and the user saw a 500 for a malformed payload.
+  app.setErrorHandler((err, req, reply) => {
+    const e = err as Error & { issues?: unknown; validation?: unknown; statusCode?: number };
+    if (err instanceof ZodError) {
+      return reply.code(400).send({
+        error: "Validation failed",
+        issues: err.issues.map((issue) => ({
+          field: issue.path.join("."),
+          message: issue.message,
+        })),
+      });
+    }
+    // Fastify's own schema validation errors, and any thrown object carrying
+    // issues, are client errors too.
+    if (e.validation || Array.isArray(e.issues)) {
+      return reply.code(400).send({ error: "Validation failed", issues: e.validation ?? e.issues });
+    }
+    const status = typeof e.statusCode === "number" && e.statusCode < 500 ? e.statusCode : 500;
+    if (status < 500) return reply.code(status).send({ error: e.message });
+    req.log.error(err);
+    return reply.code(500).send({ error: "Internal server error" });
   });
 
   await app.register(cors, {
@@ -110,17 +137,6 @@ export async function buildApp() {
 
   // Health check.
   app.get("/api/health", async () => ({ ok: true, time: new Date().toISOString() }));
-
-  // Zod errors -> 400.
-  app.setErrorHandler((err, req, reply) => {
-    const e = err as Error & { issues?: unknown; validation?: unknown; statusCode?: number };
-    if (e.issues || e.validation) {
-      return reply.code(400).send({ error: "Validation failed", issues: e.issues ?? e.validation });
-    }
-    req.log.error(err);
-    const status = typeof e.statusCode === "number" && e.statusCode < 500 ? e.statusCode : 500;
-    reply.code(status).send({ error: status < 500 ? e.message : "Internal server error" });
-  });
 
   return app;
 }
