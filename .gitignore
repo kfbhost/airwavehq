@@ -16,6 +16,7 @@ backups/
 # Local debug / scratch files
 debug-late-show-start.md
 .freebuff/
+.tmp/
 *.mts
 *.log
 
