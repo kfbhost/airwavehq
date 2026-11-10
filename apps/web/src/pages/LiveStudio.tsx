@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { api, getToken } from "../api";
+import { mediaUrl } from "../media";
+import { useLeaveGuard } from "../leaveGuard";
 import { Badge, Button, Card, Field, Input, Modal, PageHead, Select, Spinner, useFetch } from "../components/ui";
 import type { Djslot, StationSettings, Track, User } from "@radiohost/shared";
 import { zonedParts } from "@radiohost/shared";
@@ -59,6 +61,10 @@ export function LiveStudio() {
   const [micOn, setMicOn] = useState(false);
   const [live, setLive] = useState(false);
   const [liveDj, setLiveDj] = useState<string | null>(null);
+  const [leaveBlocked, setLeaveBlocked] = useState(false);
+  // On air, this page owns the only live connection to the engine: unmounting it
+  // ends the broadcast, so hold the DJ here until they press Stop live.
+  useLeaveGuard(live, () => setLeaveBlocked(true));
   const [decks, setDecks] = useState<[DeckState, DeckState]>([EMPTY_DECK, EMPTY_DECK]);
   const [carts, setCarts] = useState<Array<{ track: Track | null; buffer: AudioBuffer | null; playing: boolean }>>(
     Array.from({ length: 8 }, () => ({ track: null, buffer: null, playing: false })),
@@ -367,7 +373,9 @@ export function LiveStudio() {
     stopDeck(idx);
     setDeckError(idx, null);
     try {
-      const res = await fetch(`/media/${track.filePath.split("/").pop()}`);
+      const src = mediaUrl(track.filePath);
+      if (!src) throw new Error("This track has no audio file.");
+      const res = await fetch(src);
       if (!res.ok) throw new Error(`Could not load file (${res.status})`);
       const buf = await res.arrayBuffer();
       const audio = await ctx.decodeAudioData(buf);
@@ -521,7 +529,9 @@ export function LiveStudio() {
   /* ---------------- Carts ---------------- */
   const decodeTrack = async (track: Track) => {
     const ctx = await ensureCtx();
-    const res = await fetch(`/media/${track.filePath.split("/").pop()}`);
+    const src = mediaUrl(track.filePath);
+    if (!src) throw new Error("Failed to load audio");
+    const res = await fetch(src);
     if (!res.ok) throw new Error("Failed to load audio");
     const buf = await res.arrayBuffer();
     return ctx.decodeAudioData(buf);
@@ -655,7 +665,8 @@ export function LiveStudio() {
         <Card className="live-notice">
           <Badge tone="live">🔴 ON AIR — you are broadcasting now</Badge>
           <span className="muted small" style={{ marginLeft: 10 }}>
-            Automation stepped aside. Close the live connection and your programming resumes.
+            Automation stepped aside. This page is locked until you press <strong>Stop live</strong> — leaving or
+            reloading it would drop the station back to automation mid-show.
           </span>
         </Card>
       ) : null}
@@ -821,6 +832,27 @@ export function LiveStudio() {
         <TrackPicker title={`Load cart ${cartPicker + 1} — jingles`} kind="jingle" onClose={() => setCartPicker(null)}
           onPick={(t) => { void loadCart(cartPicker, t); setCartPicker(null); }} />
       ) : null}
+
+      <Modal
+        open={leaveBlocked}
+        title="You're still on air"
+        onClose={() => setLeaveBlocked(false)}
+        footer={
+          <>
+            <Button variant="danger" onClick={() => { setLeaveBlocked(false); stopLive(); }}>■ Stop broadcast</Button>
+            <Button variant="primary" onClick={() => setLeaveBlocked(false)}>Stay on air</Button>
+          </>
+        }
+      >
+        <p style={{ marginTop: 0 }}>
+          You are broadcasting live, so you can't leave Live Studio yet. Moving to another page or reloading
+          closes the live connection and hands the station straight back to automation — your show would cut
+          off mid-air.
+        </p>
+        <p className="hint" style={{ marginBottom: 0 }}>
+          Press <strong>Stop broadcast</strong> to end the show, then you can navigate anywhere.
+        </p>
+      </Modal>
     </>
   );
 }
@@ -985,8 +1017,9 @@ function TrackPicker({ title, onClose, onPick, kind = "music" }: { title: string
       return;
     }
     stopPreview();
-    const fileName = t.filePath.split("/").pop() ?? t.filePath;
-    const audio = new Audio(`/media/${encodeURIComponent(fileName)}`);
+    const src = mediaUrl(t.filePath);
+    if (!src) return;
+    const audio = new Audio(src);
     audio.preload = "auto";
     audio.onended = () => {
       if (previewRef.current === audio) stopPreview();
