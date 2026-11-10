@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { api, upload } from "../api";
+import { mediaUrl } from "../media";
 import { Badge, Button, Card, Empty, Field, Input, Modal, PageHead, Select, Spinner, useFetch } from "../components/ui";
 import type { Track, TrackKind } from "@radiohost/shared";
 import { KIND_LABELS } from "@radiohost/shared";
@@ -214,7 +215,11 @@ export function Library() {
       previewAudioRef.current = null;
     }
 
-    const src = `/media/${track.filePath.split("/").pop()}`;
+    const src = mediaUrl(track.filePath);
+    if (!src) {
+      setPreviewTrackId(null);
+      return;
+    }
     const audio = new Audio(src);
     audio.volume = 0.9;
     audio.onended = () => {
@@ -401,7 +406,7 @@ export function Library() {
                     <tr key={t.id}>
                       <td>
                         <div className="row" style={{ gap: 8 }}>
-                          {t.artworkPath ? <img src={`/media/${t.artworkPath.split("/").pop()}`} alt="" style={{ width: 30, height: 30, borderRadius: 6, objectFit: "cover" }} /> : <div style={{ width: 30, height: 30, borderRadius: 6, background: "var(--panel2)", display: "grid", placeItems: "center" }}>♪</div>}
+                          {t.artworkPath ? <img src={mediaUrl(t.artworkPath) ?? undefined} alt="" style={{ width: 30, height: 30, borderRadius: 6, objectFit: "cover" }} /> : <div style={{ width: 30, height: 30, borderRadius: 6, background: "var(--panel2)", display: "grid", placeItems: "center" }}>♪</div>}
                           <strong>{t.title}</strong>
                         </div>
                       </td>

@@ -1,4 +1,5 @@
 import { useState, type ReactNode, type ButtonHTMLAttributes, type InputHTMLAttributes, type SelectHTMLAttributes, type CSSProperties } from "react";
+import { mediaUrl } from "../media";
 
 export function Button(props: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: "primary" | "danger" | "ghost" }) {
   const { variant, className = "", ...rest } = props;
@@ -128,9 +129,7 @@ export function UserAvatar({
   className?: string;
 }) {
   const [failed, setFailed] = useState(false);
-  const url =
-    src ??
-    (avatarPath ? `/media/${encodeURIComponent(avatarPath.split(/[\\/]/).pop() ?? "")}` : null);
+  const url = src ?? mediaUrl(avatarPath);
   const initials =
     name
       .trim()

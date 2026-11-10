@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useStatus } from "../ws";
 import { useFetch } from "../components/ui";
 import { api } from "../api";
+import { mediaUrl } from "../media";
 import { Card, Empty, PageHead, Stat, Badge } from "../components/ui";
 import { Link } from "react-router-dom";
 import type { StationSettings } from "@radiohost/shared";
@@ -503,7 +504,7 @@ function ArtworkThumb({
   size: "large" | "small";
 }) {
   const [failed, setFailed] = useState(false);
-  const src = artworkUrl(item.artworkPath);
+  const src = mediaUrl(item.artworkPath);
   if (!src || failed) {
     return <div className={`dashboard-artwork dashboard-artwork-${size} is-fallback`} aria-hidden="true">♪</div>;
   }
@@ -516,10 +517,4 @@ function ArtworkThumb({
       onError={() => setFailed(true)}
     />
   );
-}
-
-function artworkUrl(artworkPath: string | null): string | null {
-  if (!artworkPath) return null;
-  const fileName = artworkPath.split(/[\\/]/).pop() ?? artworkPath;
-  return `/media/${encodeURIComponent(fileName)}`;
 }

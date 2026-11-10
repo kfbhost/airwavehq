@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useStatus } from "../ws";
 import { api } from "../api";
 import { Badge, UserAvatar } from "./ui";
+import { mediaUrl } from "../media";
 
 export function OnAirBar({ userName, userAvatarPath }: { userName: string; userAvatarPath?: string | null }) {
   const snap = useStatus();
@@ -111,7 +112,7 @@ export function OnAirBar({ userName, userAvatarPath }: { userName: string; userA
         ) : current ? (
           <>
             {current.artworkPath ? (
-              <img className="np-art np-art-image" src={artworkUrl(current.artworkPath)} alt="" loading="lazy" />
+              <img className="np-art np-art-image" src={mediaUrl(current.artworkPath) ?? undefined} alt="" loading="lazy" />
             ) : (
               <div className="np-art" aria-hidden="true">♪</div>
             )}
@@ -203,11 +204,6 @@ function fullscreenElement(): Element | null {
 function fullscreenSupported(): boolean {
   const doc = document as FullscreenDocument;
   return Boolean(doc.fullscreenEnabled ?? doc.webkitFullscreenEnabled);
-}
-
-function artworkUrl(artworkPath: string): string {
-  const fileName = artworkPath.split(/[/\\\\]/).pop() ?? artworkPath;
-  return `/media/${encodeURIComponent(fileName)}`;
 }
 
 /** A clear, always-ticking studio clock shown in the station's timezone. */
