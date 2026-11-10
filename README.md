@@ -8,6 +8,18 @@ It combines an always-on automated playout engine, a browser-based Live Studio
 for DJs, a weekly schedule that runs the whole station, and polished public
 pages for your listeners — everything installed with one script.
 
+## Screenshots
+
+![RadioHost Studio dashboard: what's on air, automation health, next up](docs/screenshots/dashboard.png)
+
+| Media Library | Live Studio |
+| --- | --- |
+| ![Media library with cover art, folders, kinds and formats](docs/screenshots/media-library.png) | ![Live Studio: two decks with waveforms, eight jingle carts, mic and master levels](docs/screenshots/live-studio.png) |
+
+| Listener analytics | Public player |
+| --- | --- |
+| ![Analytics: listeners over time and top tracks](docs/screenshots/analytics.png) | ![Public player with now playing artwork and listen live](docs/screenshots/player.png) |
+
 ## What it does
 
 **Automated playout engine**
