@@ -16,7 +16,7 @@ function useAuth(onDone: (u: User) => void) {
       const res = await api<{ token: string; user: User }>(path, { method: "POST", body });
       setToken(res.token);
       onDone(res.user);
-      nav(res.user.role === "dj" ? "/live" : "/");
+      nav(res.user.role === "dj" ? "/studio" : "/");
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
     } finally {

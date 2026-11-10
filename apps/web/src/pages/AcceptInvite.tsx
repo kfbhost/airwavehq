@@ -45,7 +45,7 @@ export function AcceptInvite() {
         body: { token, name: name.trim(), password },
       });
       setToken(res.token);
-      window.location.href = res.user.role === "dj" ? "/live" : "/";
+      window.location.href = res.user.role === "dj" ? "/studio" : "/";
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not accept the invite.");
       setBusy(false);

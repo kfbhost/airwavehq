@@ -13,7 +13,7 @@ import { useEffect, useRef } from "react";
  *     i.e. before React Router's own click handler can act on them;
  *   - Back/Forward is undone by a popstate listener registered at module load,
  *     before <BrowserRouter> adds its own. Listeners on the same target run in
- *     registration order, so the URL is already back on /live when the router
+ *     registration order, so the URL is already back on /studio when the router
  *     reads it and it never unmounts the studio;
  *   - reload/close raises the browser's "leave site?" confirmation.
  */

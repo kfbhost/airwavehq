@@ -513,10 +513,10 @@ function DjsTab() {
                     setToken(r.token);
                     // Replace the document so the auth gate re-evaluates the DJ token
                     // instead of leaving the admin shell mounted during navigation.
-                    // NOTE: do NOT navigate to "/live" — Caddy proxies /live* to Icecast
-                    // (the audio mount), so a full page load there shows the stream player,
-                    // not the DJ studio. Landing on "/" lets the DJ shell client-side
-                    // redirect to /live, which never hits Caddy.
+                    // NOTE: never hard-load "/studio" or "/live" here — Caddy
+                    // proxies /live* to Icecast (the audio mount) and a full page
+                    // load bypasses the auth gate. Landing on "/" lets the DJ
+                    // shell client-side redirect to /studio, never hitting Caddy.
                     window.location.replace("/");
                   });
                 }}>Log in as DJ</Button>

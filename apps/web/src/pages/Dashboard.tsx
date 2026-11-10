@@ -166,7 +166,7 @@ export function Dashboard() {
           title={settings?.settings.stationName ?? "Your station"}
           sub="Broadcast control room"
           actions={
-            <Link to="/live">
+            <Link to="/studio">
               <span className="btn btn-primary">🔴 Go Live</span>
             </Link>
           }

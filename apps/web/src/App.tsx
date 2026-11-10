@@ -62,7 +62,7 @@ const NAV = [
   { to: "/schedule", icon: "📅", label: "Schedule" },
   { to: "/recordings", icon: "🎧", label: "Recordings" },
   { to: "/backups", icon: "💾", label: "Backups" },
-  { to: "/live", icon: "🔴", label: "Live Studio" },
+  { to: "/studio", icon: "🔴", label: "Live Studio" },
   { to: "/player", icon: "🔊", label: "Public Player" },
   { to: "/widgets", icon: "🧩", label: "Widgets" },
   { to: "/analytics", icon: "📊", label: "Analytics" },
@@ -114,7 +114,11 @@ function Shell({ user, onAuthUserUpdated }: { user: User; onAuthUserUpdated: (us
             <Route path="/shows" element={<Shows />} />
             <Route path="/voice" element={<Navigate to="/rundowns" replace />} />
             <Route path="/rundowns" element={<Rundowns />} />
-            <Route path="/live" element={<LiveStudio />} />
+            <Route path="/studio" element={<LiveStudio />} />
+            {/* /live belongs to the Icecast stream (Caddy proxies /live* to
+                Icecast), so the studio lives at /studio. This redirect only
+                catches client-side navigations from an old bookmark. */}
+            <Route path="/live" element={<Navigate to="/studio" replace />} />
             <Route path="/campaigns" element={<Navigate to="/" replace />} />
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/requests" element={<Navigate to="/" replace />} />
@@ -145,7 +149,7 @@ function DjShell({ user }: { user: User }) {
       <aside className="sidebar">
         <SidebarBrand appName="Live Studio" />
         <nav className="nav">
-          <NavLink to="/live"><span className="nav-icon">🔴</span><span>Go Live</span></NavLink>
+          <NavLink to="/studio"><span className="nav-icon">🔴</span><span>Go Live</span></NavLink>
           <NavLink to="/shows"><span className="nav-icon">🎙️</span><span>My Shows</span></NavLink>
           <NavLink to="/schedule"><span className="nav-icon">📅</span><span>Schedule</span></NavLink>
           <NavLink to="/rundowns"><span className="nav-icon">🎚️</span><span>Show Builder</span></NavLink>
@@ -164,14 +168,18 @@ function DjShell({ user }: { user: User }) {
         <OnAirBar userName={user.name} userAvatarPath={user.avatarPath} />
         <div className="content">
           <Routes>
-            <Route path="/live" element={<LiveStudio />} />
+            <Route path="/studio" element={<LiveStudio />} />
+            {/* /live belongs to the Icecast stream (Caddy proxies /live* to
+                Icecast), so the studio lives at /studio. This redirect only
+                catches client-side navigations from an old bookmark. */}
+            <Route path="/live" element={<Navigate to="/studio" replace />} />
             <Route path="/shows" element={<Shows />} />
             <Route path="/schedule" element={<Schedule />} />
             <Route path="/rundowns" element={<Rundowns />} />
             <Route path="/player" element={<PublicPlayer />} />
             <Route path="/widgets" element={<Widgets />} />
             <Route path="/help" element={<DjHelp />} />
-            <Route path="*" element={<Navigate to="/live" />} />
+            <Route path="*" element={<Navigate to="/studio" />} />
           </Routes>
         </div>
       </div>
