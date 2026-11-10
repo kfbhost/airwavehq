@@ -3,6 +3,7 @@ import { db, schema } from "./db/client.js";
 import { buildApp } from "./app.js";
 import { config } from "./config.js";
 import { hashPassword } from "./auth.js";
+import { checkBootstrapAdmin, isLoginableEmail } from "./bootstrap.js";
 import { startWebhookWorker } from "./services/webhooks.js";
 import { startRetentionWorker } from "./services/retention.js";
 import { startEngineWatchdog } from "./services/watchdog.js";
@@ -27,14 +28,34 @@ async function bootstrapAdmin(): Promise<void> {
   const password = process.env.ADMIN_PASSWORD;
   if (!email || !password) return;
   const admins = await db.select().from(schema.users).where(eq(schema.users.role, "admin")).limit(1);
-  if (admins.length > 0) return;
+  if (admins.length > 0) {
+    // The account already exists, so the env no longer matters — but if its
+    // address is one login refuses, nobody can ever sign in. Say so loudly.
+    const existing = admins[0]!.email;
+    if (!isLoginableEmail(existing)) {
+      console.error(
+        `[bootstrap] WARNING: the admin account "${existing}" has an address login rejects, ` +
+          `so it can never sign in. Use a real address (e.g. admin@example.com) on a fresh ` +
+          `database, or correct the users.email row directly.`,
+      );
+    }
+    return;
+  }
+  const check = checkBootstrapAdmin(email, password, process.env.ADMIN_NAME ?? "Station Owner");
+  if (!check.ok) {
+    throw new Error(
+      `Refusing to create the admin account: ${check.reason}. ADMIN_EMAIL needs a real domain ` +
+        `(e.g. admin@example.com) and ADMIN_PASSWORD at least 8 characters — otherwise the account ` +
+        `is created but can never sign in.`,
+    );
+  }
   await db.insert(schema.users).values({
-    email: email.toLowerCase(),
-    name: process.env.ADMIN_NAME ?? "Station Owner",
-    passwordHash: hashPassword(password),
+    email: check.email.toLowerCase(),
+    name: check.name,
+    passwordHash: hashPassword(check.password),
     role: "admin",
   });
-  console.log(`[bootstrap] Created admin account for ${email}`);
+  console.log(`[bootstrap] Created admin account for ${check.email}`);
 }
 
 async function main(): Promise<void> {
