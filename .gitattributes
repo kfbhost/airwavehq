@@ -1,0 +1,13 @@
+# Normalise line endings in the repository and on export (git archive).
+* text=auto
+
+# Everything below runs on Linux (shell, Docker, nginx, Caddy, Compose), so it
+# must stay LF even when the repository is checked out on Windows. Without this,
+# `git archive` on a Windows box with core.autocrlf=true produces CRLF scripts and
+# the VPS installer dies on "$'\r': command not found".
+*.sh       text eol=lf
+Dockerfile text eol=lf
+*.conf     text eol=lf
+Caddyfile  text eol=lf
+*.yml      text eol=lf
+*.yaml     text eol=lf
