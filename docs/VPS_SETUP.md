@@ -9,8 +9,19 @@ it's healthy, and prints your login details â€” no manual `.env` editing re
 - Ubuntu 22.04/24.04 or Debian 12 VPS (any architecture Docker supports)
 - A domain pointed at the VPS IP (A record) â€” needed for the free HTTPS certificate
 - Ports `80` and `443` open
-- About `2 GB RAM` and `20 GB disk`
+- **2 GB RAM minimum** and 20 GB disk
 - Your project files, either cloned from git or uploaded with `rsync` (below)
+
+> **On a 2 GB VPS, add swap first.** The installer builds three Node images, and
+> without swap the compiler can be killed by the OOM killer part-way through the
+> build. This is safe to run before installing:
+>
+> ```bash
+> fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile
+> echo '/swapfile none swap sw 0 0' >> /etc/fstab
+> ```
+>
+> Verified install: Ubuntu 22.04.5, 1.9 GB RAM + 2.5 GB swap, 8 minutes end to end.
 
 ## 1. Put the App on the Server
 
