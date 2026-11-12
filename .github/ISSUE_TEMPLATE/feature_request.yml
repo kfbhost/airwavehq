@@ -1,0 +1,43 @@
+name: Feature idea
+description: Suggest how AirwaveHQ should work, or something it's missing
+title: "[Idea]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ideas are welcome — the project is far from finished and the most useful
+        suggestions describe a real station workflow rather than a one-line wish.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: Describe the station setup or the job you're doing when this comes up.
+      placeholder: "I schedule shows by hand every Sunday and..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like it to do?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: importance
+    attributes:
+      label: How much does it matter to you?
+      options:
+        - Nice to have
+        - Would use it every week
+        - It's blocking me from using the app
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Anything you do instead today? (optional)
+      description: Another app, a spreadsheet, a manual workaround — it all helps.

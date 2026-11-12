@@ -1,0 +1,75 @@
+name: Bug report
+description: Something broke, or didn't behave the way you expected
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for testing AirwaveHQ — it's early software, so things will break and reports are exactly what's needed.
+
+        Please **don't paste secrets**: no `.env` contents, admin passwords or Icecast source passwords.
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Shown at the bottom of the sidebar.
+      placeholder: "2.0.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: install
+    attributes:
+      label: How did you install it?
+      options:
+        - Fresh VPS install (infra/install-vps.sh)
+        - Upgraded an existing install
+        - Local development (npm run dev)
+        - Other / not sure
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Server OS and architecture
+      placeholder: Ubuntu 22.04 / x86_64
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open ...
+        2. Click ...
+        3. See ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected, and what happened instead
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: "docker compose -f infra/docker-compose.yml logs --tail=100 api engine — or the browser console for UI bugs."
+      render: shell
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Before posting
+      options:
+        - label: I'm testing on a spare server, not a live station
+          required: false
+        - label: I've removed any passwords or secrets from the logs above
+          required: true

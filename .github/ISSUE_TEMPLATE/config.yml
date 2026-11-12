@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Question or general discussion
+    url: https://github.com/kfbhost/airwavehq/discussions
+    about: Ask how something works, share what you're building, or talk through a bigger change before opening an issue.
