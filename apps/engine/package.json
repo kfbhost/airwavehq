@@ -1,5 +1,5 @@
 {
-  "name": "@airshift/engine",
+  "name": "@airwavehq/engine",
   "version": "1.1.0",
   "private": true,
   "type": "module",
@@ -11,7 +11,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@airshift/shared": "*",
+    "@airwavehq/shared": "*",
     "jose": "^5.9.6",
     "ws": "^8.18.0"
   },

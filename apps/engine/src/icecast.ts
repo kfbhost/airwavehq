@@ -6,7 +6,7 @@ import { join } from "node:path";
 import { createServer, request as httpRequest } from "node:http";
 import { connect as netConnect, type Socket } from "node:net";
 import { config } from "./config.js";
-import type { ProcessingPreset } from "@airshift/shared";
+import type { ProcessingPreset } from "@airwavehq/shared";
 import { broadcastFilterArgsFor } from "./processing.js";
 
 export interface Sink {
@@ -132,10 +132,10 @@ export class IcecastSink implements Sink {
         `Authorization: Basic ${auth}`,
         `Content-Type: ${config.iceCodec === "aac" ? "audio/aac" : "audio/mpeg"}`,
         `Icecast-Public: ${config.icePublic}`,
-        "Icecast-Name: Airshift",
-        "Icecast-Description: Airshift stream",
+        "Icecast-Name: AirwaveHQ",
+        "Icecast-Description: AirwaveHQ stream",
         "Icecast-Genre: varied",
-        "User-Agent: Airshift-Studio/1.0",
+        "User-Agent: AirwaveHQ-Studio/1.0",
         "Connection: keep-alive",
         "",
         "",

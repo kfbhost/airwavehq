@@ -2,7 +2,7 @@ import { desc, eq } from "drizzle-orm";
 import { alias } from "drizzle-orm/pg-core";
 import { basename } from "node:path";
 import { db, schema } from "../db/client.js";
-import type { PublicListenAgainItem } from "@airshift/shared";
+import type { PublicListenAgainItem } from "@airwavehq/shared";
 
 // Shared data access for the public "Listen Again" surfaces: the episode list,
 // a single episode, and the crawler-friendly share page. Kept in one place so

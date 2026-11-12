@@ -1,4 +1,4 @@
-import { emailSchema, registerSchema } from "@airshift/shared";
+import { emailSchema, registerSchema } from "@airwavehq/shared";
 
 export type BootstrapCheck =
   | { ok: true; email: string; password: string; name: string }

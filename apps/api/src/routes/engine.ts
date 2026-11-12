@@ -6,8 +6,8 @@ import { computeNextSequence, nextBreakTime, resolveProgrammingContext } from ".
 import { getEngineRestartRequestedAt, getProgrammingRevision, setStatus, snapshot, setCurrentShow, setCurrentItemStartedAt } from "../services/engineState.js";
 import { recordListenerSnapshot } from "../services/listenerPresence.js";
 import { emitEvent } from "../services/webhooks.js";
-import type { EnginePlayEvent, EngineStatus } from "@airshift/shared";
-import { zonedParts } from "@airshift/shared";
+import type { EnginePlayEvent, EngineStatus } from "@airwavehq/shared";
+import { zonedParts } from "@airwavehq/shared";
 
 export function engineRoutes(app: FastifyInstance): void {
   app.get("/engine/next", { preHandler: requireEngine }, async (req) => {

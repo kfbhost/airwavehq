@@ -1,4 +1,4 @@
-const TOKEN_KEY = "airshift_token";
+const TOKEN_KEY = "airwavehq_token";
 
 export function getToken(): string | null {
   return localStorage.getItem(TOKEN_KEY);

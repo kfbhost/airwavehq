@@ -1,6 +1,6 @@
-import { zonedParts, zonedDate } from "@airshift/shared";
-import { DEFAULT_BREAKS } from "@airshift/shared";
-import type { CampaignFeasibility } from "@airshift/shared";
+import { zonedParts, zonedDate } from "@airwavehq/shared";
+import { DEFAULT_BREAKS } from "@airwavehq/shared";
+import type { CampaignFeasibility } from "@airwavehq/shared";
 
 export interface CampaignPlan {
   days: number;

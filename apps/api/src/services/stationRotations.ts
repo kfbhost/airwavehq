@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import { zonedDate, zonedParts } from "@airshift/shared";
+import { zonedDate, zonedParts } from "@airwavehq/shared";
 import { db, schema } from "../db/client.js";
 import type { DbStationRotation } from "../db/schema.js";
 

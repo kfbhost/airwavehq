@@ -5,7 +5,7 @@ import { createWriteStream, type WriteStream } from "node:fs";
 import { join } from "node:path";
 import { config } from "./config.js";
 import { api } from "./api.js";
-import type { ProcessingPreset } from "@airshift/shared";
+import type { ProcessingPreset } from "@airwavehq/shared";
 import { broadcastFilterArgsFor } from "./processing.js";
 
 export interface RecordingTarget {

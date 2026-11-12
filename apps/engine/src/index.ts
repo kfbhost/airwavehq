@@ -5,7 +5,7 @@ import { RecordingManager } from "./recording.js";
 import { startLiveServer } from "./live.js";
 import { config } from "./config.js";
 import { api } from "./api.js";
-import type { ProcessingPreset } from "@airshift/shared";
+import type { ProcessingPreset } from "@airwavehq/shared";
 
 async function main(): Promise<void> {
   console.log(`[engine] starting · api=${config.apiUrl} ice=${config.iceHost || "(none)"} bitrate=${config.iceBitrate}k`);

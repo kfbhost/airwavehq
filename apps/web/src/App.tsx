@@ -22,8 +22,8 @@ import { AcceptInvite } from "./pages/AcceptInvite";
 import { Widgets } from "./pages/Widgets";
 import { Help } from "./pages/Help";
 import { DjHelp } from "./pages/DjHelp";
-import { APP_VERSION } from "@airshift/shared";
-import type { User } from "@airshift/shared";
+import { APP_VERSION } from "@airwavehq/shared";
+import type { User } from "@airwavehq/shared";
 
 function SidebarBrand({ appName }: { appName: string }) {
   const [station, setStation] = useState<string | null>(null);
@@ -78,7 +78,7 @@ function Shell({ user, onAuthUserUpdated }: { user: User; onAuthUserUpdated: (us
   return (
     <div className="layout">
       <aside className="sidebar">
-        <SidebarBrand appName="Airshift" />
+        <SidebarBrand appName="AirwaveHQ" />
         <nav className="nav">
           {NAV.map((n) => (
             <NavLink key={n.to} to={n.to} end={n.to === "/"}>
@@ -88,7 +88,7 @@ function Shell({ user, onAuthUserUpdated }: { user: User; onAuthUserUpdated: (us
           ))}
         </nav>
         <div style={{ flex: 1 }} />
-        <div className="sidebar-version" title={`Airshift · Version ${APP_VERSION}`}>{APP_VERSION}</div>
+        <div className="sidebar-version" title={`AirwaveHQ · Version ${APP_VERSION}`}>{APP_VERSION}</div>
         <button
           className="btn btn-ghost btn-sm"
           onClick={() => {
@@ -134,11 +134,11 @@ function Shell({ user, onAuthUserUpdated }: { user: User; onAuthUserUpdated: (us
 }
 
 function DjShell({ user }: { user: User }) {
-  const [isImpersonating, setIsImpersonating] = useState(() => Boolean(localStorage.getItem("airshift_admin_token")));
+  const [isImpersonating, setIsImpersonating] = useState(() => Boolean(localStorage.getItem("airwavehq_admin_token")));
   const returnToAdmin = () => {
-    const adminToken = localStorage.getItem("airshift_admin_token");
+    const adminToken = localStorage.getItem("airwavehq_admin_token");
     if (!adminToken) return;
-    localStorage.removeItem("airshift_admin_token");
+    localStorage.removeItem("airwavehq_admin_token");
     setIsImpersonating(false);
     setToken(adminToken);
     window.location.replace("/settings");
@@ -159,7 +159,7 @@ function DjShell({ user }: { user: User }) {
         </nav>
         <div style={{ flex: 1 }} />
         {isImpersonating ? <button className="btn btn-primary btn-sm" style={{ marginBottom: 8 }} onClick={returnToAdmin}>← Return to admin</button> : null}
-        <div className="sidebar-version" title={`Airshift · Version ${APP_VERSION}`}>{APP_VERSION}</div>
+        <div className="sidebar-version" title={`AirwaveHQ · Version ${APP_VERSION}`}>{APP_VERSION}</div>
         <button className="btn btn-ghost btn-sm" onClick={() => { setToken(null); window.location.href = "/dj"; }}>
           Sign out
         </button>

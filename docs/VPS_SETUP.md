@@ -1,4 +1,4 @@
-# Airshift VPS Setup Guide
+# AirwaveHQ VPS Setup Guide
 
 A **fresh Ubuntu or Debian VPS** can be running the whole station with **one script**.
 The installer installs Docker, generates all secrets, builds the stack, waits until
@@ -29,8 +29,8 @@ it's healthy, and prints your login details â€” no manual `.env` editing re
 
 ```bash
 mkdir -p /opt && cd /opt
-git clone https://github.com/kfbhost/airshift.git airshift
-cd /opt/airshift
+git clone https://github.com/kfbhost/airwavehq.git airwavehq
+cd /opt/airwavehq
 ```
 
 ### Option B: upload from your computer
@@ -39,7 +39,7 @@ cd /opt/airshift
 rsync -az --delete \
   --exclude node_modules --exclude .git --exclude .DS_Store \
   --exclude .env --exclude dist --exclude build --exclude .turbo \
-  /path/to/airshift/ root@YOUR_SERVER_IP:/opt/airshift/
+  /path/to/airwavehq/ root@YOUR_SERVER_IP:/opt/airwavehq/
 ```
 
 ## 2. Run the Installer (that's it)
@@ -105,7 +105,7 @@ sudo bash infra/install-vps.sh
 Or use compose directly:
 
 ```bash
-cd /opt/airshift
+cd /opt/airwavehq
 docker compose -f infra/docker-compose.yml --env-file .env up -d --build
 docker compose -f infra/docker-compose.yml --env-file .env ps
 docker compose -f infra/docker-compose.yml --env-file .env logs -f
@@ -117,7 +117,7 @@ docker compose -f infra/docker-compose.yml --env-file .env logs -f
   library + recordings + config), with download and restore.
 - `infra/backup.sh` is the host-side script for scheduled cron backups; it bundles
   the code too and keeps the last 14 days. Example cron:
-  `0 3 * * * cd /opt/airshift && BACKUP_DIR=/var/backups/airshift ./infra/backup.sh`
+  `0 3 * * * cd /opt/airwavehq && BACKUP_DIR=/var/backups/airwavehq ./infra/backup.sh`
 
 ## Troubleshooting
 

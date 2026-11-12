@@ -10,7 +10,7 @@ COPY apps/widgets/package.json apps/widgets/package.json
 RUN npm ci
 RUN npm install "@rollup/rollup-linux-x64-musl@$(node -p "require('./node_modules/rollup/package.json').version")" --no-save
 COPY . .
-RUN npm run build -w @airshift/web
+RUN npm run build -w @airwavehq/web
 
 FROM nginx:alpine
 COPY apps/web/nginx.conf /etc/nginx/conf.d/default.conf

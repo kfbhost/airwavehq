@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { api } from "../api";
 import { AudioPlayer } from "../components/AudioPlayer";
 import { UserAvatar } from "../components/ui";
-import type { PublicListenAgainItem } from "@airshift/shared";
+import type { PublicListenAgainItem } from "@airwavehq/shared";
 
 function fmtClock(totalSeconds: number): string {
   const total = Math.max(0, Math.round(totalSeconds));

@@ -6,7 +6,7 @@ import type { FastifyInstance } from "fastify";
 
 // `config` reads DATA_DIR at module load, so point it at a scratch directory and
 // import the app modules dynamically (static imports are hoisted above this).
-const dataDir = await mkdtemp(join(tmpdir(), "airshift-upload-"));
+const dataDir = await mkdtemp(join(tmpdir(), "airwavehq-upload-"));
 process.env.DATA_DIR = dataDir;
 process.env.JWT_SECRET = "test-secret";
 
@@ -26,7 +26,7 @@ function authed(): Record<string, string> {
 
 /** A one-part multipart body, the shape a browser's file input sends. */
 function multipartBody(filename: string, content: Buffer): { payload: Buffer; headers: Record<string, string> } {
-  const boundary = "----airshifttest";
+  const boundary = "----airwavehqtest";
   const head = Buffer.from(
     `--${boundary}\r\nContent-Disposition: form-data; name="file"; filename="${filename}"\r\n` +
       `Content-Type: application/gzip\r\n\r\n`

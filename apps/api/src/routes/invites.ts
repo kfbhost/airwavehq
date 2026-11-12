@@ -5,8 +5,8 @@ import { db, schema, isoRow } from "../db/client.js";
 import { requireAdmin, hashPassword, hashToken, signToken } from "../auth.js";
 import { config } from "../config.js";
 import { sendInviteEmail } from "../services/mailer.js";
-import { inviteCreateSchema, inviteAcceptSchema } from "@airshift/shared";
-import type { Role } from "@airshift/shared";
+import { inviteCreateSchema, inviteAcceptSchema } from "@airwavehq/shared";
+import type { Role } from "@airwavehq/shared";
 
 const INVITE_TTL_MS = 7 * 24 * 3600_000; // 7 days
 

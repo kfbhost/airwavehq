@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { api, setToken, upload } from "../api";
 import { Badge, Button, Card, Field, Input, Modal, PageHead, Select, Spinner, UserAvatar, useFetch } from "../components/ui";
-import type { ApiKey, Djslot, Invite, ProcessingPreset, Show, StationSettings, User, Webhook } from "@airshift/shared";
-import { EVENT_TYPES } from "@airshift/shared";
+import type { ApiKey, Djslot, Invite, ProcessingPreset, Show, StationSettings, User, Webhook } from "@airwavehq/shared";
+import { EVENT_TYPES } from "@airwavehq/shared";
 
 /**
  * Real IANA timezones for the Station card dropdown. Uses the browser's own
@@ -506,10 +506,10 @@ function DjsTab() {
                 <Badge tone={u.isActive ? "green" : "default"}>{u.isActive ? "active" : "disabled"}</Badge>
                 {u.djCode ? <span className="mono">{u.djCode}</span> : null}
                 <Button className="btn-sm" onClick={() => {
-                  const currentToken = localStorage.getItem("airshift_token");
+                  const currentToken = localStorage.getItem("airwavehq_token");
                   if (!currentToken) return;
                   void api<{ token: string }>(`/auth/impersonate-dj/${u.id}`, { method: "POST" }).then((r) => {
-                    localStorage.setItem("airshift_admin_token", currentToken);
+                    localStorage.setItem("airwavehq_admin_token", currentToken);
                     setToken(r.token);
                     // Replace the document so the auth gate re-evaluates the DJ token
                     // instead of leaving the admin shell mounted during navigation.
@@ -763,7 +763,7 @@ function WebhooksTab() {
           </div>
         </Field>
         <Button variant="primary" onClick={() => void create()}>Create webhook</Button>
-        <p className="hint">Deliveries are signed with <span className="mono">X-Airshift-Signature: sha256=…</span> (HMAC of the body with your secret) and retried with backoff.</p>
+        <p className="hint">Deliveries are signed with <span className="mono">X-AirwaveHQ-Signature: sha256=…</span> (HMAC of the body with your secret) and retried with backoff.</p>
       </Card>
       {loading ? <Spinner /> : null}
       <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 12 }}>

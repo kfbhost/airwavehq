@@ -5,20 +5,20 @@ import { config, getJSON, mount, render } from "./common.js";
  * <script src="https://radio.example.com/widgets/nowplaying.js" data-station="https://radio.example.com"></script>
  */
 const { base } = config();
-const { root } = mount("airshift-nowplaying");
+const { root } = mount("airwavehq-nowplaying");
 
 render(root, `
-  <div class="airshift-widget" style="max-width:none;padding:8px 14px;display:flex;align-items:center;gap:10px;flex-wrap:nowrap">
-    <span class="airshift-live" id="airshift-live-dot" style="display:none">🔴</span>
-    <span class="airshift-muted" style="white-space:nowrap">Now playing:</span>
-    <span id="airshift-text" class="airshift-truncate" style="font-weight:600;flex:1;min-width:0">…</span>
-    <span class="airshift-muted" id="airshift-listeners" style="white-space:nowrap"></span>
+  <div class="airwavehq-widget" style="max-width:none;padding:8px 14px;display:flex;align-items:center;gap:10px;flex-wrap:nowrap">
+    <span class="airwavehq-live" id="airwavehq-live-dot" style="display:none">🔴</span>
+    <span class="airwavehq-muted" style="white-space:nowrap">Now playing:</span>
+    <span id="airwavehq-text" class="airwavehq-truncate" style="font-weight:600;flex:1;min-width:0">…</span>
+    <span class="airwavehq-muted" id="airwavehq-listeners" style="white-space:nowrap"></span>
   </div>
 `);
 
-const textEl = root.getElementById("airshift-text")!;
-const liveEl = root.getElementById("airshift-live-dot")!;
-const listenersEl = root.getElementById("airshift-listeners")!;
+const textEl = root.getElementById("airwavehq-text")!;
+const liveEl = root.getElementById("airwavehq-live-dot")!;
+const listenersEl = root.getElementById("airwavehq-listeners")!;
 
 async function poll(): Promise<void> {
   try {

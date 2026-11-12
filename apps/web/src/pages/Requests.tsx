@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { api } from "../api";
 import { Badge, Button, Card, Empty, PageHead, Select, Spinner, useFetch } from "../components/ui";
-import type { RequestEntry } from "@airshift/shared";
+import type { RequestEntry } from "@airwavehq/shared";
 
 export function Requests() {
   const [filter, setFilter] = useState("pending");

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { api } from "../api";
-import type { PublicNowPlaying } from "@airshift/shared";
+import type { PublicNowPlaying } from "@airwavehq/shared";
 
 const HEARTBEAT_MS = 30_000;
 
 function listenerSessionId(): string {
-  const key = "airshift_public_listener_session";
+  const key = "airwavehq_public_listener_session";
   const existing = sessionStorage.getItem(key);
   if (existing) return existing;
   const next = crypto.randomUUID();

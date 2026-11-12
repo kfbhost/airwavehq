@@ -9,7 +9,7 @@ import {
   VOICE_LINK_OVERLAP_OUT_MS,
   type EngineItem,
   type ProcessingPreset,
-} from "@airshift/shared";
+} from "@airwavehq/shared";
 
 const FRAMES_PER_TICK = Math.round((SAMPLE_RATE * config.tickMs) / 1000);
 const PRIME_MS = 800; // spawn ffmpeg this early so the buffer is full at start

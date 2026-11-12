@@ -82,37 +82,37 @@ export function css(theme: "dark" | "light"): string {
 
 export const BASE_CSS = `
   *{box-sizing:border-box}
-  .airshift-widget{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px;color:var(--text);font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:14px;line-height:1.4;max-width:340px}
-  .airshift-row{display:flex;align-items:center;gap:10px}
-  .airshift-btn{background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;border-radius:8px;padding:8px 14px;font-size:14px;font-weight:600;cursor:pointer;min-width:44px}
-  .airshift-btn:active{transform:scale(.97)}
-  .airshift-title{font-weight:700}
-  .airshift-muted{color:var(--muted);font-size:12px}
-  .airshift-meta{color:var(--muted);font-size:11px;margin-top:8px}
-  .airshift-live{color:var(--green);font-weight:700}
-  .airshift-badge{display:inline-flex;align-items:center;gap:4px;background:var(--panel);border:1px solid var(--border);border-radius:999px;padding:2px 8px;font-size:11px;color:var(--muted)}
-  .airshift-badge-live{color:#fff;background:#e11d48;border-color:#e11d48;font-weight:700}
-  .airshift-truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .airshift-bar{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:8px 12px;color:var(--text);font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:13px;display:flex;align-items:center;gap:10px}
-  .airshift-art{max-width:260px}
-  .airshift-art-img{width:100%;aspect-ratio:1/1;border-radius:10px;overflow:hidden;background:var(--panel);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:40px;color:var(--muted);margin-bottom:12px}
-  .airshift-art-img img{width:100%;height:100%;object-fit:cover;display:block}
-  .airshift-list{display:flex;flex-direction:column;gap:6px;margin-top:4px;max-height:260px;overflow:auto}
-  .airshift-item{display:flex;align-items:center;gap:10px;padding:6px;border-radius:8px;border:1px solid transparent}
-  .airshift-item-on{background:var(--panel);border-color:var(--border)}
-  .airshift-item-art{width:38px;height:38px;flex:0 0 38px;border-radius:6px;overflow:hidden;background:var(--panel);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--muted)}
-  .airshift-item-art img{width:100%;height:100%;object-fit:cover;display:block}
-  .airshift-item-copy{min-width:0;flex:1}
-  .airshift-item-name{font-weight:600;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .airshift-time{font-variant-numeric:tabular-nums;font-size:12px;color:var(--muted);flex:0 0 auto}
-  .airshift-mini-btn{background:var(--panel);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:5px 9px;font-size:12px;cursor:pointer}
-  .airshift-mini-btn:active{transform:scale(.97)}
+  .airwavehq-widget{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px;color:var(--text);font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:14px;line-height:1.4;max-width:340px}
+  .airwavehq-row{display:flex;align-items:center;gap:10px}
+  .airwavehq-btn{background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;border-radius:8px;padding:8px 14px;font-size:14px;font-weight:600;cursor:pointer;min-width:44px}
+  .airwavehq-btn:active{transform:scale(.97)}
+  .airwavehq-title{font-weight:700}
+  .airwavehq-muted{color:var(--muted);font-size:12px}
+  .airwavehq-meta{color:var(--muted);font-size:11px;margin-top:8px}
+  .airwavehq-live{color:var(--green);font-weight:700}
+  .airwavehq-badge{display:inline-flex;align-items:center;gap:4px;background:var(--panel);border:1px solid var(--border);border-radius:999px;padding:2px 8px;font-size:11px;color:var(--muted)}
+  .airwavehq-badge-live{color:#fff;background:#e11d48;border-color:#e11d48;font-weight:700}
+  .airwavehq-truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .airwavehq-bar{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:8px 12px;color:var(--text);font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:13px;display:flex;align-items:center;gap:10px}
+  .airwavehq-art{max-width:260px}
+  .airwavehq-art-img{width:100%;aspect-ratio:1/1;border-radius:10px;overflow:hidden;background:var(--panel);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:40px;color:var(--muted);margin-bottom:12px}
+  .airwavehq-art-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .airwavehq-list{display:flex;flex-direction:column;gap:6px;margin-top:4px;max-height:260px;overflow:auto}
+  .airwavehq-item{display:flex;align-items:center;gap:10px;padding:6px;border-radius:8px;border:1px solid transparent}
+  .airwavehq-item-on{background:var(--panel);border-color:var(--border)}
+  .airwavehq-item-art{width:38px;height:38px;flex:0 0 38px;border-radius:6px;overflow:hidden;background:var(--panel);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--muted)}
+  .airwavehq-item-art img{width:100%;height:100%;object-fit:cover;display:block}
+  .airwavehq-item-copy{min-width:0;flex:1}
+  .airwavehq-item-name{font-weight:600;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .airwavehq-time{font-variant-numeric:tabular-nums;font-size:12px;color:var(--muted);flex:0 0 auto}
+  .airwavehq-mini-btn{background:var(--panel);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:5px 9px;font-size:12px;cursor:pointer}
+  .airwavehq-mini-btn:active{transform:scale(.97)}
 `;
 
 /** Creates a shadow root on a new container appended to the script's parent. */
 export function mount(widgetId: string): { root: ShadowRoot; el: HTMLElement } {
   const el = document.createElement("div");
-  el.className = "airshift-mount";
+  el.className = "airwavehq-mount";
   document.currentScript?.parentElement?.appendChild(el);
   const root = el.attachShadow({ mode: "open" });
   const style = document.createElement("style");
@@ -128,7 +128,7 @@ export function mount(widgetId: string): { root: ShadowRoot; el: HTMLElement } {
  */
 export function render(root: ShadowRoot, html: string): HTMLElement {
   const wrap = document.createElement("div");
-  wrap.className = "airshift-host";
+  wrap.className = "airwavehq-host";
   wrap.innerHTML = html;
   root.appendChild(wrap);
   return wrap;

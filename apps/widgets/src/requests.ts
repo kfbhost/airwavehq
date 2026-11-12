@@ -5,27 +5,27 @@ import { config, getJSON, mount, render } from "./common.js";
  * <script src="https://radio.example.com/widgets/requests.js" data-station="https://radio.example.com"></script>
  */
 const { base } = config();
-const { root } = mount("airshift-requests");
+const { root } = mount("airwavehq-requests");
 
 render(root, `
-  <div class="airshift-widget">
-    <div class="airshift-title">Request a song</div>
-    <div class="airshift-meta" style="margin:4px 0 10px">We'll play it on air soon.</div>
-    <input id="airshift-query" placeholder="Song or artist…" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px 10px;font-size:14px;margin-bottom:8px">
-    <div id="airshift-suggest" style="display:flex;flex-direction:column;gap:4px;margin-bottom:8px"></div>
-    <input id="airshift-name" placeholder="Your name (optional)" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px 10px;font-size:14px;margin-bottom:8px">
-    <textarea id="airshift-msg" placeholder="Message (optional)" rows="2" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px 10px;font-size:14px;margin-bottom:10px;resize:vertical"></textarea>
-    <button id="airshift-submit" class="airshift-btn" style="width:100%">Send request</button>
-    <div id="airshift-status" class="airshift-meta" style="margin-top:8px"></div>
+  <div class="airwavehq-widget">
+    <div class="airwavehq-title">Request a song</div>
+    <div class="airwavehq-meta" style="margin:4px 0 10px">We'll play it on air soon.</div>
+    <input id="airwavehq-query" placeholder="Song or artist…" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px 10px;font-size:14px;margin-bottom:8px">
+    <div id="airwavehq-suggest" style="display:flex;flex-direction:column;gap:4px;margin-bottom:8px"></div>
+    <input id="airwavehq-name" placeholder="Your name (optional)" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px 10px;font-size:14px;margin-bottom:8px">
+    <textarea id="airwavehq-msg" placeholder="Message (optional)" rows="2" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px 10px;font-size:14px;margin-bottom:10px;resize:vertical"></textarea>
+    <button id="airwavehq-submit" class="airwavehq-btn" style="width:100%">Send request</button>
+    <div id="airwavehq-status" class="airwavehq-meta" style="margin-top:8px"></div>
   </div>
 `);
 
-const queryEl = root.getElementById("airshift-query") as HTMLInputElement;
-const nameEl = root.getElementById("airshift-name") as HTMLInputElement;
-const msgEl = root.getElementById("airshift-msg") as HTMLTextAreaElement;
-const suggestEl = root.getElementById("airshift-suggest")!;
-const submitEl = root.getElementById("airshift-submit") as HTMLButtonElement;
-const statusEl = root.getElementById("airshift-status")!;
+const queryEl = root.getElementById("airwavehq-query") as HTMLInputElement;
+const nameEl = root.getElementById("airwavehq-name") as HTMLInputElement;
+const msgEl = root.getElementById("airwavehq-msg") as HTMLTextAreaElement;
+const suggestEl = root.getElementById("airwavehq-suggest")!;
+const submitEl = root.getElementById("airwavehq-submit") as HTMLButtonElement;
+const statusEl = root.getElementById("airwavehq-status")!;
 
 let selectedId: string | null = null;
 let searchTimer: ReturnType<typeof setTimeout>;

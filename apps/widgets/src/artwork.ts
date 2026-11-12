@@ -5,27 +5,27 @@ import { absolute, config, esc, getJSON, mount, render } from "./common.js";
  * <script src="https://radio.example.com/widgets/artwork.js" data-station="https://radio.example.com" data-theme="dark"></script>
  */
 const { base } = config();
-const { root } = mount("airshift-artwork");
+const { root } = mount("airwavehq-artwork");
 
 render(root, `
-  <div class="airshift-widget airshift-art">
-    <div class="airshift-art-img" id="airshift-art"><span>🎵</span></div>
-    <div class="airshift-row" style="align-items:flex-start;gap:8px">
+  <div class="airwavehq-widget airwavehq-art">
+    <div class="airwavehq-art-img" id="airwavehq-art"><span>🎵</span></div>
+    <div class="airwavehq-row" style="align-items:flex-start;gap:8px">
       <div style="flex:1;min-width:0">
-        <div class="airshift-title airshift-truncate" id="airshift-title">on air</div>
-        <div class="airshift-muted airshift-truncate" id="airshift-artist"></div>
+        <div class="airwavehq-title airwavehq-truncate" id="airwavehq-title">on air</div>
+        <div class="airwavehq-muted airwavehq-truncate" id="airwavehq-artist"></div>
       </div>
-      <span class="airshift-badge" id="airshift-badge" style="display:none">LIVE</span>
+      <span class="airwavehq-badge" id="airwavehq-badge" style="display:none">LIVE</span>
     </div>
-    <div class="airshift-meta" id="airshift-foot"></div>
+    <div class="airwavehq-meta" id="airwavehq-foot"></div>
   </div>
 `);
 
-const artEl = root.getElementById("airshift-art")!;
-const titleEl = root.getElementById("airshift-title")!;
-const artistEl = root.getElementById("airshift-artist")!;
-const badgeEl = root.getElementById("airshift-badge")!;
-const footEl = root.getElementById("airshift-foot")!;
+const artEl = root.getElementById("airwavehq-art")!;
+const titleEl = root.getElementById("airwavehq-title")!;
+const artistEl = root.getElementById("airwavehq-artist")!;
+const badgeEl = root.getElementById("airwavehq-badge")!;
+const footEl = root.getElementById("airwavehq-foot")!;
 
 let lastArt = "";
 
@@ -72,7 +72,7 @@ async function poll(): Promise<void> {
     if (info.live) {
       badgeEl.style.display = "";
       badgeEl.textContent = "🔴 LIVE";
-      badgeEl.className = "airshift-badge airshift-badge-live";
+      badgeEl.className = "airwavehq-badge airwavehq-badge-live";
       titleEl.textContent = info.liveDjName ? info.liveDjName : "Live now";
       artistEl.textContent = info.showName ?? "";
     } else {

@@ -2,7 +2,7 @@ import type { FastifyInstance } from "fastify";
 import { and, asc, count, eq, inArray, max } from "drizzle-orm";
 import { db, schema, isoRow } from "../db/client.js";
 import { authenticate, requireAdmin } from "../auth.js";
-import { playlistGenerateSchema, playlistSchema, playlistPatchSchema } from "@airshift/shared";
+import { playlistGenerateSchema, playlistSchema, playlistPatchSchema } from "@airwavehq/shared";
 import { bumpProgrammingRevision } from "../services/engineState.js";
 
 export function playlistRoutes(app: FastifyInstance): void {

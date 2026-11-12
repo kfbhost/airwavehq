@@ -1,8 +1,8 @@
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import { api } from "../api";
 import { Button, Card, Empty, Field, Input, Modal, PageHead, Select, Spinner, useFetch } from "../components/ui";
-import type { Djslot, ScheduleEntry, Show, StationRotation, StationSettings, User } from "@airshift/shared";
-import { minutesToHHMM } from "@airshift/shared";
+import type { Djslot, ScheduleEntry, Show, StationRotation, StationSettings, User } from "@airwavehq/shared";
+import { minutesToHHMM } from "@airwavehq/shared";
 
 interface EntryRow extends ScheduleEntry {
   show: Show;

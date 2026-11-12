@@ -5,7 +5,7 @@ import { api } from "../api";
 import { mediaUrl } from "../media";
 import { Card, Empty, PageHead, Stat, Badge } from "../components/ui";
 import { Link } from "react-router-dom";
-import type { StationSettings } from "@airshift/shared";
+import type { StationSettings } from "@airwavehq/shared";
 
 interface DashboardShow {
   id: string;

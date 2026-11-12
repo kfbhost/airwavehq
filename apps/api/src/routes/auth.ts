@@ -16,7 +16,7 @@ import {
   generateDjCode,
   hashToken,
 } from "../auth.js";
-import { registerSchema, loginSchema, djLoginSchema, djCreateSchema, passwordChangeSchema, adminAccountUpdateSchema } from "@airshift/shared";
+import { registerSchema, loginSchema, djLoginSchema, djCreateSchema, passwordChangeSchema, adminAccountUpdateSchema } from "@airwavehq/shared";
 
 const mediaDir = () => join(config.dataDir, "media");
 const AVATAR_MIME = /^image\/(png|jpe?g|webp|gif)$/i;

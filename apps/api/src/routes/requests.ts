@@ -2,7 +2,7 @@ import type { FastifyInstance } from "fastify";
 import { and, desc, eq } from "drizzle-orm";
 import { db, schema, isoRow } from "../db/client.js";
 import { authenticate, requireAdmin } from "../auth.js";
-import { requestPatchSchema } from "@airshift/shared";
+import { requestPatchSchema } from "@airwavehq/shared";
 import { emitEvent } from "../services/webhooks.js";
 
 export function requestRoutes(app: FastifyInstance): void {

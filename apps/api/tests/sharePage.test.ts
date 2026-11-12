@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { airedLabel, escapeHtml, renderSharePage } from "../src/routes/share.js";
 import { formatEpisodeDuration } from "../src/services/listenAgain.js";
-import type { PublicListenAgainItem } from "@airshift/shared";
+import type { PublicListenAgainItem } from "@airwavehq/shared";
 
 function episode(overrides: Partial<PublicListenAgainItem> = {}): PublicListenAgainItem {
   return {

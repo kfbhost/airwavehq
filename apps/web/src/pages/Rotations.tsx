@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { api } from "../api";
 import { Badge, Button, Card, Empty, Field, Input, Modal, PageHead, Select, Spinner, Stat, useFetch } from "../components/ui";
-import type { Playlist, StationRotation, StationSettings } from "@airshift/shared";
+import type { Playlist, StationRotation, StationSettings } from "@airwavehq/shared";
 
 const DOWS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const HOURS = Array.from({ length: 24 }, (_, i) => i);

@@ -1,5 +1,5 @@
 {
-  "name": "@airshift/web",
+  "name": "@airwavehq/web",
   "version": "1.2.0",
   "private": true,
   "type": "module",
@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@airshift/shared": "*",
+    "@airwavehq/shared": "*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0"

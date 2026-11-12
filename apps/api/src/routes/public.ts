@@ -7,8 +7,8 @@ import { resolveListenerCountry, touchPublicListener } from "../services/listene
 import { geoDecision } from "../services/geoblock.js";
 import { loadListenAgainEpisode, loadListenAgainEpisodes, loadStationInfo } from "../services/listenAgain.js";
 import { emitEvent } from "../services/webhooks.js";
-import { listenerHeartbeatSchema, requestSchema } from "@airshift/shared";
-import type { PublicNowPlaying, PublicScheduleItem } from "@airshift/shared";
+import { listenerHeartbeatSchema, requestSchema } from "@airwavehq/shared";
+import type { PublicNowPlaying, PublicScheduleItem } from "@airwavehq/shared";
 
 export function publicRoutes(app: FastifyInstance): void {
   app.get("/public/now-playing", async (req) => {

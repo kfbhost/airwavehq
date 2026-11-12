@@ -1,8 +1,8 @@
 /**
- * Shared constants for Airshift.
+ * Shared constants for AirwaveHQ.
  */
 
-export const APP_NAME = "Airshift";
+export const APP_NAME = "AirwaveHQ";
 
 /** Single source of truth for the app version, shown in the sidebar.
  * Bump this (and the package.json versions) on every deployed change. */

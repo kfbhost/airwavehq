@@ -27,7 +27,7 @@ import {
   SHOW_OVERRUN_TARGET_SEC,
   zonedParts,
   zonedMidnight,
-} from "@airshift/shared";
+} from "@airwavehq/shared";
 
 export function programmingRoutes(app: FastifyInstance): void {
   async function deleteShowVoiceArchive(showId: string): Promise<void> {

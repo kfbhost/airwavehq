@@ -7,7 +7,7 @@ import { checkBootstrapAdmin, isLoginableEmail } from "../src/bootstrap.js";
 
 describe("checkBootstrapAdmin", () => {
   it("rejects an address the login route would refuse (no TLD)", () => {
-    const result = checkBootstrapAdmin("admin@localhost", "Airshift123!", "Alex");
+    const result = checkBootstrapAdmin("admin@localhost", "AirwaveHQ123!", "Alex");
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.reason).toMatch(/email/i);
   });
@@ -19,11 +19,11 @@ describe("checkBootstrapAdmin", () => {
   });
 
   it("rejects a blank admin name", () => {
-    expect(checkBootstrapAdmin("admin@example.com", "Airshift123!", "").ok).toBe(false);
+    expect(checkBootstrapAdmin("admin@example.com", "AirwaveHQ123!", "").ok).toBe(false);
   });
 
   it("accepts a valid address and a proper password", () => {
-    const result = checkBootstrapAdmin("Admin@Example.com", "Airshift123!", "Alex");
+    const result = checkBootstrapAdmin("Admin@Example.com", "AirwaveHQ123!", "Alex");
     expect(result.ok).toBe(true);
     if (result.ok) {
       expect(result.email).toBe("Admin@Example.com");

@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-# Backup script for Airshift (self-hosted).
-# Usage: BACKUP_DIR=/var/backups/airshift ./backup.sh   (run from the compose dir)
-# Cron example: 0 3 * * * cd /opt/airshift && BACKUP_DIR=/var/backups/airshift ./infra/backup.sh
+# Backup script for AirwaveHQ (self-hosted).
+# Usage: BACKUP_DIR=/var/backups/airwavehq ./backup.sh   (run from the compose dir)
+# Cron example: 0 3 * * * cd /opt/airwavehq && BACKUP_DIR=/var/backups/airwavehq ./infra/backup.sh
 set -euo pipefail
 
-DIR="${BACKUP_DIR:-/var/backups/airshift}"
+DIR="${BACKUP_DIR:-/var/backups/airwavehq}"
 PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 STAMP="$(date +%F-%H%M)"
-PG_USER="${POSTGRES_USER:-airshift}"
-PG_DB="${POSTGRES_DB:-airshift}"
+PG_USER="${POSTGRES_USER:-airwavehq}"
+PG_DB="${POSTGRES_DB:-airwavehq}"
 
 mkdir -p "$DIR"
 

@@ -2,7 +2,7 @@ import { api } from "./api.js";
 import { config } from "./config.js";
 import type { Playout } from "./playout.js";
 import type { Sink } from "./icecast.js";
-import type { EnginePlayEvent, EngineStatus } from "@airshift/shared";
+import type { EnginePlayEvent, EngineStatus } from "@airwavehq/shared";
 
 export class Telemetry {
   private startedAt = Date.now();

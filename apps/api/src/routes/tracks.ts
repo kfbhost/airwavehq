@@ -10,7 +10,7 @@ import { db, schema, isoRow } from "../db/client.js";
 import { authenticate, requireAdmin } from "../auth.js";
 import { detectMime, extractArtwork, probeAudio, scanLoudness } from "../services/ffprobe.js";
 import { config } from "../config.js";
-import { KINDS, trackPatchSchema } from "@airshift/shared";
+import { KINDS, trackPatchSchema } from "@airwavehq/shared";
 
 const mediaDir = () => join(config.dataDir, "media");
 

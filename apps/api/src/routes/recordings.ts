@@ -6,7 +6,7 @@ import { basename, dirname } from "node:path";
 import { db, schema, isoRow } from "../db/client.js";
 import { requireAdmin, verifyToken } from "../auth.js";
 import { bumpProgrammingRevision } from "../services/engineState.js";
-import { recordingPatchSchema } from "@airshift/shared";
+import { recordingPatchSchema } from "@airwavehq/shared";
 
 export function recordingRoutes(app: FastifyInstance): void {
   // Admin: list every recording with its show name, newest first.

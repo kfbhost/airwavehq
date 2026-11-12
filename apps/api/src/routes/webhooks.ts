@@ -3,7 +3,7 @@ import { asc, desc, eq } from "drizzle-orm";
 import { randomBytes } from "node:crypto";
 import { db, schema, isoRow } from "../db/client.js";
 import { requireAdmin } from "../auth.js";
-import { webhookSchema, webhookPatchSchema } from "@airshift/shared";
+import { webhookSchema, webhookPatchSchema } from "@airwavehq/shared";
 import { emitEvent } from "../services/webhooks.js";
 
 export function webhookRoutes(app: FastifyInstance): void {
@@ -66,7 +66,7 @@ export function webhookRoutes(app: FastifyInstance): void {
     await db.insert(schema.webhookDeliveries).values({
       webhookId: id,
       event: "track.start",
-      payload: { test: true, at: new Date().toISOString(), message: "Test ping from Airshift" },
+      payload: { test: true, at: new Date().toISOString(), message: "Test ping from AirwaveHQ" },
     });
     return { ok: true, message: "Test delivery queued" };
   });

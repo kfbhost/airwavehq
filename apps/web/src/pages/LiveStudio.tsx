@@ -3,8 +3,8 @@ import { api, getToken } from "../api";
 import { mediaUrl } from "../media";
 import { useLeaveGuard } from "../leaveGuard";
 import { Badge, Button, Card, Field, Input, Modal, PageHead, Select, Spinner, useFetch } from "../components/ui";
-import type { Djslot, StationSettings, Track, User } from "@airshift/shared";
-import { zonedParts } from "@airshift/shared";
+import type { Djslot, StationSettings, Track, User } from "@airwavehq/shared";
+import { zonedParts } from "@airwavehq/shared";
 
 interface DeckState {
   track: Track | null;
@@ -20,7 +20,7 @@ interface DeckState {
 }
 
 const EMPTY_DECK: DeckState = { track: null, buffer: null, offset: 0, playing: false, volume: 0.88, pfl: false, startedAt: 0, startOffset: 0 };
-const CARTS_KEY = "airshift_live_carts";
+const CARTS_KEY = "airwavehq_live_carts";
 
 // AudioWorklet capture processor: runs on the dedicated audio thread (unlike the
 // deprecated ScriptProcessorNode, which glitches/clicks when the main thread is

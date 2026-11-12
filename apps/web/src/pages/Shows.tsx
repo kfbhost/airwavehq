@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../api";
 import { Badge, Button, Card, Empty, Field, Input, Modal, PageHead, Select, Spinner, useFetch } from "../components/ui";
-import type { Clockwheel, Djslot, Playlist, Show, User } from "@airshift/shared";
+import type { Clockwheel, Djslot, Playlist, Show, User } from "@airwavehq/shared";
 
 export function Shows() {
   const { data, loading, reload } = useFetch(() => api<{ shows: Show[] }>("/shows"));

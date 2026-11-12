@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { getToken } from "./api";
-import type { EngineStatus } from "@airshift/shared";
+import type { EngineStatus } from "@airwavehq/shared";
 
 export interface StatusSnapshot {
   status: EngineStatus;

@@ -6,7 +6,7 @@ import type { FastifyInstance } from "fastify";
 
 // `config` reads DATA_DIR at module load, so point it at a scratch directory and
 // import the app modules dynamically (static imports are hoisted above this).
-const dataDir = await mkdtemp(join(tmpdir(), "airshift-backups-"));
+const dataDir = await mkdtemp(join(tmpdir(), "airwavehq-backups-"));
 process.env.DATA_DIR = dataDir;
 process.env.JWT_SECRET = "test-secret";
 

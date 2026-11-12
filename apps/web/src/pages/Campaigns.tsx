@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { api } from "../api";
 import { Badge, Button, Card, Empty, Field, Input, Modal, PageHead, Select, Spinner, useFetch } from "../components/ui";
-import type { AdCampaign, Track } from "@airshift/shared";
-import { BREAK_NAMES } from "@airshift/shared";
+import type { AdCampaign, Track } from "@airwavehq/shared";
+import { BREAK_NAMES } from "@airwavehq/shared";
 
 interface CampaignRow extends AdCampaign {
   summary: {
