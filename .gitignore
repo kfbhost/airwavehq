@@ -33,3 +33,6 @@ coverage/
 
 # macOS AppleDouble files
 ._*
+
+# Local agent notes (contain machine-specific paths)
+AGENTS.md
