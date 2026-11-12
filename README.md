@@ -2,14 +2,26 @@
 
 ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Node.js 20+](https://img.shields.io/badge/node-%E2%89%A520-339933)
+![Status: early development](https://img.shields.io/badge/status-early%20development-orange)
 
-A complete, self-hosted internet radio station that runs on your own Linux VPS —
-no SaaS fees, no per-listener pricing. Your music, your listeners, your data,
-all yours.
+A self-hosted internet radio station that runs on your own Linux VPS — no SaaS
+fees, no per-listener pricing. Your music, your listeners, your data, all yours.
 
 It combines an always-on automated playout engine, a browser-based Live Studio
 for DJs, a weekly schedule that runs the whole station, and polished public
 pages for your listeners — everything installed with one script.
+
+> ### 🚧 Early development — not a finished product
+>
+> AirwaveHQ is a personal project that is **far from finished**. It genuinely
+> runs a station (every screenshot below is the real app), but expect rough
+> edges, missing features and breaking changes between versions.
+>
+> **Please test it on a spare VPS, not a live station.** If something breaks, or
+> you have an idea for how it ought to work, [open an issue](https://github.com/kfbhost/airwavehq/issues)
+> — that is the most useful thing anyone can do for this project right now.
+> There's a fuller list of [what's tested and what isn't](#status--how-to-help)
+> below.
 
 ## Screenshots
 
@@ -170,6 +182,50 @@ Use **Settings → Backups** in the dashboard to create a backup (database, data
 and config), download all three files, then **Restore** on the new install. The
 code is identical everywhere — only your music and data need moving.
 
+## Status & how to help
+
+**Where it is:** functional enough to run a real station, but early — features
+are still moving and things will break. Treat it as a project to test and shape,
+not a finished platform to depend on yet.
+
+**Tested so far**
+
+- Fresh install on **Ubuntu 22.04 (x86_64)**: builds, issues a Let's Encrypt
+  certificate, plays audio — about 8 minutes end to end
+- Upgrading an existing install by rebuilding the images and `up -d`, with the
+  database and media left intact
+
+**Not tested yet — these are the most valuable things to try**
+
+- Debian 12 and **arm64 / Raspberry Pi**
+- Re-running the installer on an existing install
+- Backup → restore onto a clean server
+- Anything beyond a handful of concurrent listeners, or running for weeks
+- Live Studio across browsers/OSes (microphone capture and Web Audio vary)
+
+**Known rough edges**
+
+- The engine logs a burst of `fetch failed` while the API is starting, and does
+  a rapid catch-up fetch after a long idle period (harmless, needs backoff)
+- No CI yet — typecheck, tests and builds are run by hand
+- The dev Widgets page needs `apps/widgets/dist` built before its previews load
+
+**Planned / wanted**
+
+- Scheduled backups and dead-air alerting
+- "Recently played" for listeners, and an installable phone-friendly player
+- Per-track cue points (intro/outro) and a second low-bitrate stream
+- Accessibility and translation pass
+
+**Ways to help**
+
+1. **Test an install** on a spare VPS and [report what broke](https://github.com/kfbhost/airwavehq/issues/new?template=bug_report.yml) —
+   include the version from the bottom of the sidebar and the container logs.
+2. **Share ideas** via the [feature template](https://github.com/kfbhost/airwavehq/issues/new?template=feature_request.yml) —
+   how you run a station, what's missing, what feels wrong.
+3. **Send code or docs** — see [CONTRIBUTING.md](CONTRIBUTING.md). Small fixes
+   are genuinely welcome; there's no formal process beyond "keep it tidy".
+
 ## Where things live
 
 ```
@@ -192,6 +248,8 @@ packages/
 
 - `START-HERE.md` — quick start summary
 - `docs/VPS_SETUP.md` — full install guide, flags, updates, backups, troubleshooting
+- `CONTRIBUTING.md` — how to report problems, suggest ideas or send a change
+- `SECURITY.md` — reporting a security issue (and what "early" means here)
 
 ## License
 
