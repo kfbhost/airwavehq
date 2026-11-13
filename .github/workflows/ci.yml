@@ -28,6 +28,15 @@ jobs:
       - name: Install
         run: npm ci
 
+      # npm's optional-dependency bug (npm/cli#4828): a lockfile generated on
+      # Windows does not install rollup's Linux binary under `npm ci`, so vite
+      # and vitest die with "Cannot find module @rollup/rollup-linux-x64-gnu".
+      # The Dockerfiles apply the same workaround for Alpine's musl build.
+      - name: Ensure rollup's Linux binary
+        run: |
+          version="$(node -p "require('rollup/package.json').version")"
+          npm install --no-save --no-package-lock "@rollup/rollup-linux-x64-gnu@$version"
+
       - name: Typecheck
         run: npm run typecheck
 
