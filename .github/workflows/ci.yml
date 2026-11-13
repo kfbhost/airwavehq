@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  # A push may be the commit we want a result for; only cancel redundant PR runs.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  checks:
+    name: Typecheck, tests and builds
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      # The API suite is unit-level and needs no database. Two tests spawn
+      # `sh | tar | gzip`, which is why they only pass on Linux.
+      # The engine's audio tests are excluded until they are verified on Linux:
+      # they fail on Windows with 0 frames decoded from their ffmpeg fixtures.
+      - name: API tests
+        run: npm run test -w @airwavehq/api
+
+      - name: Build (api, engine, web, widgets)
+        run: npm run build

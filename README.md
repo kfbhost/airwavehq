@@ -207,7 +207,7 @@ not a finished platform to depend on yet.
 
 - The engine logs a burst of `fetch failed` while the API is starting, and does
   a rapid catch-up fetch after a long idle period (harmless, needs backoff)
-- No CI yet — typecheck, tests and builds are run by hand
+- The engine's audio unit tests are excluded from CI until they are verified on Linux (they fail on Windows)
 - The dev Widgets page needs `apps/widgets/dist` built before its previews load
 
 **Planned / wanted**
