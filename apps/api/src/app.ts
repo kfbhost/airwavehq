@@ -26,6 +26,7 @@ import { backupRoutes } from "./routes/backups.js";
 import { inviteRoutes } from "./routes/invites.js";
 import { shareRoutes } from "./routes/share.js";
 import { wsRoutes } from "./routes/ws.js";
+import { aboutRoutes } from "./routes/about.js";
 
 export async function buildApp() {
   const app = Fastify({
@@ -122,6 +123,7 @@ export async function buildApp() {
     recordingRoutes,
     backupRoutes,
     inviteRoutes,
+    aboutRoutes,
   ]) {
     await app.register(register, { prefix: "/api" });
   }

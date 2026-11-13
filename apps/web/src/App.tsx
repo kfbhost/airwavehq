@@ -21,6 +21,7 @@ import { ListenAgain } from "./pages/ListenAgain";
 import { AcceptInvite } from "./pages/AcceptInvite";
 import { Widgets } from "./pages/Widgets";
 import { Help } from "./pages/Help";
+import { About } from "./pages/About";
 import { DjHelp } from "./pages/DjHelp";
 import { APP_VERSION } from "@airwavehq/shared";
 import type { User } from "@airwavehq/shared";
@@ -67,6 +68,7 @@ const NAV = [
   { to: "/widgets", icon: "🧩", label: "Widgets" },
   { to: "/analytics", icon: "📊", label: "Analytics" },
   { to: "/help", icon: "❓", label: "Help Guide" },
+  { to: "/about", icon: "ℹ️", label: "About" },
 ];
 
 function Shell({ user, onAuthUserUpdated }: { user: User; onAuthUserUpdated: (user: User) => void }) {
@@ -126,6 +128,7 @@ function Shell({ user, onAuthUserUpdated }: { user: User; onAuthUserUpdated: (us
             <Route path="/player" element={<PublicPlayer />} />
             <Route path="/widgets" element={<Widgets />} />
             <Route path="/help" element={<Help />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </div>
       </div>
