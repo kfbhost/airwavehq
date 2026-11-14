@@ -36,3 +36,6 @@ coverage/
 
 # Local agent notes (contain machine-specific paths)
 AGENTS.md
+
+# Local desktop-app exploration (not part of the published project)
+desktop/
