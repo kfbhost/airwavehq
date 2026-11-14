@@ -77,17 +77,17 @@ would reuse the existing sink.)
 
 ## Proof of concept
 
-`poc/play-folder.mts` plays a folder as a continuous station: it decodes each
+`poc/play-folder.ts` plays a folder as a continuous station: it decodes each
 track with `PcmStream`, crossfades into the next one, and writes the mix to
 ffplay (or to a WAV file with `--out`, which is how it is tested without
 speakers).
 
 ```bash
 # from the repository root
-node node_modules/tsx/dist/cli.mjs desktop/poc/play-folder.mts "C:\path\to\music"
+node node_modules/tsx/dist/cli.mjs desktop/poc/play-folder.ts "C:\path\to\music"
 
 # render 30 seconds to a file instead of playing it
-node node_modules/tsx/dist/cli.mjs desktop/poc/play-folder.mts "C:\path\to\music" --out .tmp/poc.wav --seconds 30
+node node_modules/tsx/dist/cli.mjs desktop/poc/play-folder.ts "C:\path\to\music" --out .tmp/poc.wav --seconds 30
 
 # options
 --crossfade <ms>   crossfade between tracks (default 3000)
